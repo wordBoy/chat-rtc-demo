@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Home | AT&T Chat Primer</title>
+    <title>Chat Demos | AT&T Chat Primer</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -41,13 +41,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">Chat :: Primer</a>
+          <a class="navbar-brand nav-chat" href="index.html">Chat :: Primer</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="demos.html">Demos</a></li>
-            <li><a href="topics.html">Topics</a></li>
+            <li><a class="nav-chat" href="index.html">Home</a></li>
+            <li class="active"><a class="nav-chat" href="demos.html"><span class="glyphicon glyphicon-star glyph-menu" aria-hidden="true"></span>Demos</a></li>
+            <li><a class="nav-chat" href="topics.html">Topics</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -55,40 +55,64 @@
 
     <div class="container">
 	    <h1>AT&amp;T Chat Primer</h1>
-	    <p>Welcome! This is an online primer for our CSUN 2017 presentation <a href="">AT&amp;T Mobile and Desktop Chat with ARIA: A Look Under the Hood</a>. If you've not heard of that presentation, that is not a problem. This site is about learning some fundamentals around web application development involving ARIA, modal windows and more. We use AT&amp;T's interactive text chat solution as the framework by which we explore all these features.</p>
+	    <p>Chat demos are the different parts of chat, also called the &quot;taxonomy&quot;. To learn more, we highly recommend you spend some time on the <a href="">att.com website</a>. The Help & Support page has a chat instance - just give it a minute to appear once the page renders. Select each image below to see more detail.</p>
 	    
 	    <section>
-		    <div class="panel panel-default">
+		    <div class="panel panel-default" style="height:">
 			  <div class="panel-heading">
-			    <h3 class="panel-title">Chat Demos</h3>
+			    <h3 class="panel-title">Chat Launch Button</h3>
 			  </div>
 			  <div class="panel-body">
-			    	<p>Chat demos are the different parts of chat, also called the &quot;taxonomy&quot;. We'll provide a brief explanation of what each part is to get you oriented. To help you decide where to start, each demo has sub-bullets with topics that we'll explore in the code.</p>
-			    <ul>
-			    	<li>Chat Launch Button</li>
-			    	<li>Touch Guide</li>
-			    	<li>Pre-Chat Survey</li>
-			    	<li>Chat Experience</li>
-			    </ul>
+			    	<div class="demo-image">
+			    		<a href="assets/images/poi-1.png"><img src="assets/images/poi-1.png" height="142" width="80" class="img-responsive" alt="mobile chat launch point"></a>
+			    	</div>
+			    	<p>Shockingly, the chat launch button initiates chat when operated by the user. It is also called the Point of Invocation (POI) or Anchor Button.</p>
+			    	<p><a href="#">Chat Launch Button Demos</a></p>
 			  </div>
 			</div>
 		</section>
-		
 	    
 	    <section>
-		    <div class="panel panel-default">
+		    <div class="panel panel-default" style="height:">
 			  <div class="panel-heading">
-			    <h3 class="panel-title">Topics</h3>
+			    <h3 class="panel-title">Touch Guide</h3>
 			  </div>
 			  <div class="panel-body">
-			    <p>Topics are the building blocks that make each demo run. We reference each of the topics below from the demos too, but they are here so you can dive right in to the details and find the right demo later.</p> 
-			    <ul>
-			    	<li>ARIA</li>
-			    	<li>Modal Windows</li>
-			    	<li>Forms</li>
-			    	<li>Keyboard Control</li>
-			    	<li>Finding Content with screen readers</li>
-			    </ul>
+			    	<div class="demo-image">
+			    		<a href="assets/images/touch-guide.png"><img src="assets/images/touch-guide.png" height="142" width="80" class="img-responsive" alt="mobile chat launch point"></a>
+			    	</div>
+			    	<p>When you launch chat, you usually need to clarify what you need to chat with someone about. This is where the Touch Guide comes in, helping the chat user get to as specific an area as possible so they get the most help possible, as fast as possible.</p>
+			    	<p><a href="#">Touch Guide Demo</a></p>
+			  </div>
+			</div>
+		</section>
+	    
+	    <section>
+		    <div class="panel panel-default" style="height:">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Pre-Chat Survey</h3>
+			  </div>
+			  <div class="panel-body">
+			    	<div class="demo-image">
+			    		<a href="assets/images/pre-chat-survey-desktop.png"><img src="assets/images/pre-chat-survey-desktop.png" height="64" width="80" class="img-responsive" alt="mobile chat launch point"></a>
+			    	</div>
+			    	<p>Before the chat session itself, it is sometimes useful to ask the user who wants to chat some questions. For example, their first name.</p>
+			    	<p><a href="#">Pre-Chat Survey Demo</a></p>
+			  </div>
+			</div>
+		</section>
+	    
+	    <section>
+		    <div class="panel panel-default" style="height:">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Chat Window</h3>
+			  </div>
+			  <div class="panel-body">
+			    	<div class="demo-image">
+			    		<a href="assets/images/chat-window.png"><img src="assets/images/chat-window.png" height="142" width="80" class="img-responsive" alt="mobile chat launch point"></a>
+			    	</div>
+			    	<p>The chat window is where the chat takes place.</p>
+			    	<p><a href="#">Chat Window Demo</a></p>
 			  </div>
 			</div>
 		</section>
