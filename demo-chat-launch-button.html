@@ -54,28 +54,27 @@
     </nav>
 
     <div class="container">
-	    <h1>Demo: Chat Launch Button</h1>
 	    
+	    <!-- Breadcrumb bar -->
 	    <ol class="breadcrumb">
-		  <li><a href="#">Home</a></li>
+		  <li><a href="index.html">Home</a></li>
 		  <li class="active">Chat Launch Style 1</li>
 		</ol>
 		
-	    <p>Content</p>
+	    <h1>Demo: Chat Launch Button (Style 1)</h1>
 	    
-	    <section>
+	    <!-- Demo options -->
+	    <section class="panel-wrapper">
 		    <div class="panel panel-default">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">Demo Options</h3>
 			  </div>
 			  <div class="panel-body">
 				  	<div class="form-group">
-					    <p>Fixed bottom button. Typical desktop style.</p>
-					    <a class="btn btn-default" href="demo-chat-launch-button.html" role="button" disabled>Chat Launch Button Style 1</a>
+					    <a class="btn btn-default" href="demo-chat-launch-button-code.html" role="button">See code for this option</a>
 				  	</div>
 				  	<div class="form-group">
-					    <p>Fixed bottom button. Common mobile style if not shown inline in the content of the page.</p>
-					    <a class="btn btn-default" href="demo-chat-launch-button-2.html" role="button">Chat Launch Button Style 2</a>
+					    <a class="btn btn-default" href="demo-chat-launch-button-2.html" role="button">See button style 2</a>
 				    </div>
 			  </div>
 			</div>
@@ -87,7 +86,7 @@
     </div><!-- /.container -->
     
     <div>
-    	<div aria-live="polite" id="inqTestDiv" style="position: fixed; right: 20px; z-index: 9999999; bottom: 0px; font-size: 16px;">
+    	<div aria-live="polite" class="chat-wrapper">
     		<div style="cursor: pointer;" onclick="alert('&quot;Chat Available&quot; launches the chat modal window');" onmouseover="this.style.cursor='pointer'">
     			<button type="button" class="chat-btn-bottom chat-btn-main">Chat available</button>
     		</div>
