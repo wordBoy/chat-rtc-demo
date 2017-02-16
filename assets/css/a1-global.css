@@ -50,6 +50,10 @@ body {
   margin-bottom: 60px;
 }
 
+code {
+	padding: 0px;
+}
+
 H1 {
 	font-size: 1.6em;
 }
@@ -100,6 +104,9 @@ a.btn-default {
 
 .breadcrumb {
 	background-color: inherit;
+	padding-left: 0px;
+	padding-bottom: 0px;
+	font-size: .9em;
 }
 
 .breadcrumb > .active {
@@ -194,6 +201,20 @@ a.nav-chat {
 /* Chat-Button-Demo
 ------------------------------------------------------------*/
 
+.chat-wrapper
+{
+	position: fixed; 
+	right: 20px; 
+	z-index: 9999999; 
+	bottom: 0px; 
+	font-size: 16px;
+}
+
+.panel-wrapper
+{
+	max-width: 500px;
+}
+
 .chat-btn-bottom 
 {
 	padding: 10px 20px;
@@ -214,13 +235,16 @@ a.nav-chat {
 	background-position: center 48%;
 	background-repeat: no-repeat;
 	background: #0574ac;
-	background: -moz-linear-gradient(top, #078cc5 0%, #0574ac 50%, #0574ac 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #078cc5), color-stop(50%, #0574ac), color-stop(100%, #0574ac));
-	background: -webkit-linear-gradient(top, #078cc5 0%, #0574ac 50%, #0574ac 100%);
-	background: -o-linear-gradient(top, #078cc5 0%, #0574ac 50%, #0574ac 100%);
-	background: -ms-linear-gradient(top, #078cc5 0%, #0574ac 50%, #0574ac 100%);
-	background: linear-gradient(to bottom, #078cc5 0%, #0574ac 50%, #0574ac 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#078cc5', endColorstr='#0574ac', GradientType=0 );
+}
+
+.chat-wrapper-2
+{
+	width: 100%; 
+	position: fixed; 
+	right: 0px; 
+	z-index: 9999999; 
+	bottom: 0px; 
+	font-size: 16px;
 }
 
 .chat-btn-bottom-2

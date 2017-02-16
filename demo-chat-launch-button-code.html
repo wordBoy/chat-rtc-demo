@@ -57,39 +57,77 @@
 	    
 	    <!-- Breadcrumb bar -->
 	    <ol class="breadcrumb">
-		  <li><a href="#">Home</a></li>
-		  <li><a href="demo-chat-launch-button.html">Chat Launch Style 1</a></li>
-		  <li class="active">Chat Launch Style 2</li>
+		  <li><a href="index.html">Home</a></li>
+		  <li><a href="demo-chat-launch-button.html">Chat Launch Button Style 1</a></li>
+		  <li class="active">Chat Launch Style 1 Code</li>
 		</ol>
 		
-	    <h1>Demo: Chat Launch Button (Style 2)</h1>
+    	<h1>Chat Launch Button Style 1 Markup</h1>
+    	
+    	<h3>HTML Markup</h3>
+	    <code>
+	    	<pre>
+&lt;div&gt;
+   &lt;div aria-live=&quot;polite&quot; class=&quot;chat-wrapper&quot;&gt;
+	&lt;div style=&quot;cursor: pointer;&quot; onclick=&quot;&hellip;&quot; 
+	onmouseover=&quot;this.style.cursor='pointer'&quot;&gt;
+		&lt;button type=&quot;button&quot; class=&quot;chat-btn-bottom chat-btn-main&quot;&gt;
+			Chat available
+		&lt;/button&gt;
+	&lt;/div&gt;
+   &lt;/div&gt;
+&lt;/div&gt;
+	    	</pre>
+	    </code>
 	    
-	    <!-- Demo options -->
-	    <section class="panel-wrapper">
-		    <div class="panel panel-default">
-			  <div class="panel-heading">
-			    <h3 class="panel-title">Demo Options</h3>
-			  </div>
-			  <div class="panel-body">
-				  	<div class="form-group">
-					    <a class="btn btn-default" href="demo-chat-launch-button-2-code.html" role="button">See code for this option</a>
-				  	</div>
-				  	<div class="form-group">
-					    <a class="btn btn-default" href="demo-chat-launch-button.html" role="button">See button style 1</a>
-				    </div>
-			  </div>
-			</div>
-		</section>
+	    <h3>CSS Markup</h3>
+	    <code>
+	    	<pre>
+<strong>.chat-wrapper</strong>
+{
+	position: fixed; 
+	right: 20px; 
+	z-index: 9999999; 
+	bottom: 0px; 
+	font-size: 16px;
+}
+
+<strong>.chat-btn-bottom</strong> 
+{
+	padding: 10px 20px;
+	font-size: 1.1875em;
+	border-radius: 8px 8px 0 0 !important;
+	-moz-border-radius: 8px 8px 0 0 !important;
+	-webkit-border-radius: 8px 8px 0 0 !important;
+	border: 0px;
+	min-height: 40px;
+	min-width: 181px;
+}
+
+<strong>.chat-btn-main</strong>
+{
+	cursor: pointer;
+	color: #fff;
+	font-family: Omnes_ATTW02Medium, arial, sans-serif !important;
+	background-position: center 48%;
+	background-repeat: no-repeat;
+	background: #0574ac;
+}
+	    	</pre>
+	    </code>
+	    
+	    
+	    
 	    
     </div><!-- /.container -->
     
-   <div aria-live="polite" class="chat-wrapper-2">
-   		<div style="cursor: pointer;" 
-   			onclick="alert('&quot;Chat Available&quot; launches the chat modal window');" 
-   			onmouseover="this.style.cursor='pointer'">
-   			<button type="button" class="chat-btn-bottom-2 chat-btn-main-2">Chat available</button>
-   		</div>
-   	</div>
+    <div>
+    	<div aria-live="polite" style="position: fixed; right: 20px; z-index: 9999999; bottom: 0px; font-size: 16px;">
+    		<div style="cursor: pointer;" onclick="alert('&quot;Chat Available&quot; launches the chat modal window');" onmouseover="this.style.cursor='pointer'">
+    			<button type="button" class="chat-btn-bottom chat-btn-main">Chat available</button>
+    		</div>
+    	</div>
+    </div>
     
 
 
