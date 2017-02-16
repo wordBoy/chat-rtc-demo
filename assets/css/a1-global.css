@@ -11,6 +11,7 @@ A11y Labs Global CSS File
 * 4 - Footer
 * 5 - Nav-bar
 * 6 - Test Pages CSS
+* 7 - Chat-Button-Demo
 * 
 */ 
 
@@ -69,6 +70,11 @@ a:link {
 	text-decoration: underline;
 }
 
+a.btn-default {
+	text-decoration: none;
+}
+
+
 /*
 *  2 - Bootstrap CSS modifications
 * ----------------------------------*/
@@ -90,6 +96,14 @@ a:link {
 .btn-primary:focus {
   background-color: #07292e;
   background-position: 0 -15px;
+}
+
+.breadcrumb {
+	background-color: inherit;
+}
+
+.breadcrumb > .active {
+	color: #5e5d5d;
 }
 
 /*
@@ -176,3 +190,64 @@ a.nav-chat {
     height: 1px !important;
     width: 1px !important;
 }
+
+/* Chat-Button-Demo
+------------------------------------------------------------*/
+
+.chat-btn-bottom 
+{
+	padding: 10px 20px;
+	font-size: 1.1875em;
+	border-radius: 8px 8px 0 0 !important;
+	-moz-border-radius: 8px 8px 0 0 !important;
+	-webkit-border-radius: 8px 8px 0 0 !important;
+	border: 0px;
+	min-height: 40px;
+	min-width: 181px;
+}
+
+.chat-btn-main
+{
+	cursor: pointer;
+	color: #fff;
+	font-family: Omnes_ATTW02Medium, arial, sans-serif !important;
+	background-position: center 48%;
+	background-repeat: no-repeat;
+	background: #0574ac;
+	background: -moz-linear-gradient(top, #078cc5 0%, #0574ac 50%, #0574ac 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #078cc5), color-stop(50%, #0574ac), color-stop(100%, #0574ac));
+	background: -webkit-linear-gradient(top, #078cc5 0%, #0574ac 50%, #0574ac 100%);
+	background: -o-linear-gradient(top, #078cc5 0%, #0574ac 50%, #0574ac 100%);
+	background: -ms-linear-gradient(top, #078cc5 0%, #0574ac 50%, #0574ac 100%);
+	background: linear-gradient(to bottom, #078cc5 0%, #0574ac 50%, #0574ac 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#078cc5', endColorstr='#0574ac', GradientType=0 );
+}
+
+.chat-btn-bottom-2
+{
+	font-size: 1.1875em;
+	border: 0px;
+	min-height: 40px;
+	min-width: 100%;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.chat-btn-main-2
+{
+	cursor: pointer;
+	color: #fff;
+	font-family: Omnes_ATTW02Medium, arial, sans-serif !important;
+	background-position: center 48%;
+	background-repeat: no-repeat;
+	background: #444444;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+
+
+
+
+
+
