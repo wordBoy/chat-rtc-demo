@@ -198,8 +198,44 @@ a.nav-chat {
     width: 1px !important;
 }
 
+/* Chat-Touch-Guide-Demo
+------------------------------------------------------------*/
+.chat-wrapper-tg
+{
+	font-size: 16px;
+	height: 332px;
+	width: 365px;
+	overflow:hidden;
+	position: absolute;
+	z-index: 9999999;
+	border: 1px solid #000;
+}
+
+.modal-window-wrapper {
+	padding: 10px;
+}
+
+.chat-wrapper-tg h1 {
+	font-size: 1.0em;
+}
+
+.tg-msg {
+	font-size: 1.0em;
+} 
+
+#titlewrap {
+	display: inline-block;
+	padding-left: 20px;
+	padding-right: 100px;
+	font-weight: bold;
+}
+
 /* Chat-Button-Demo
 ------------------------------------------------------------*/
+
+.is-hidden {
+	display: none;
+}
 
 .chat-wrapper
 {
