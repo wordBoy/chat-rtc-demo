@@ -35,10 +35,6 @@ A11y Labs Global CSS File
 
 html {
 	font-size: 12px;
-  	
-  	/*sticky footer*/
-  	position: relative;
-  	min-height: 100%;
 }
 
 body {
@@ -201,13 +197,16 @@ a.nav-chat {
 */
 .chat-wrapper-ac
 {
+	background-color: #fff;
 	font-size: 16px;
-	height: 332px;
-	width: 365px;
+	min-height: 332px;
+	min-width: 365px;
 	overflow:hidden;
 	position: absolute;
 	z-index: 9999999;
-	border: 1px solid #000;
+	border-radius: 4px;
+	overflow-wrap: break-word;
+	box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.5);
 }
 
 .chat-modal-wrapper {
@@ -221,17 +220,22 @@ a.nav-chat {
 .chat-modal-header-title-wrapper {
 	padding-top: 14px;
 	padding-left: 14px;
-	padding-bottom: 4px;
+	padding-bottom: 8px;
 	color: #fff;
 	
 }
 
 #chat-modal-header-close-btn {
-	margin-left: 126px;
-	margin-bottom: 8px;
+	margin-right: 20px;
+	margin-bottom: 12px;
 	background-color: none;
-	background: none;
+	background: #fff;
 	border: none;
+	float:right;
+	color: #000;
+	border-radius: 12px;
+	font-size: 0.9em;
+	font-weight: bold;
 }
 
 H1.chat-modal-header-title {
@@ -270,7 +274,7 @@ H1.chat-modal-header-title {
 .ac-body-link-list li {
 	list-style-type: none;
 	padding-top: 3px;
-	padding-bottom: 3px;
+	padding-bottom: 7px;
 }
 
 .ac-body-link-list li button {
@@ -304,7 +308,7 @@ H1.chat-modal-header-title {
 .chat-btn-bottom 
 {
 	padding: 10px 20px;
-	font-size: 1.1875em;
+	font-size: 125%;
 	border-radius: 8px 8px 0 0 !important;
 	-moz-border-radius: 8px 8px 0 0 !important;
 	-webkit-border-radius: 8px 8px 0 0 !important;
