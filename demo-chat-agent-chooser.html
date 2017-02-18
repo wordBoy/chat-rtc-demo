@@ -55,7 +55,6 @@
     	}
     	
     	function modalWindow_hide() {
-			
     		//stop responding to window resize commands
     		jQuery(window).off( "resize" );
     		
@@ -72,6 +71,7 @@
     	function modalWindow_show(resizeMode) {
     		
     		var minWinWidthForSoloModal = 700;
+    		var targetContainer;
     		
     		//respond to window resize commands
     		 if (modalIsHidden) {
@@ -82,37 +82,44 @@
     		//hide chat launch button
     		chatLaunchButton_hide();
     		
+    		targetContainer = jQuery("#agent-chooser-container");
+    		if (targetContainer.length == 0) {
+    			//Houston, we have a problem.
+    			return;
+    		}
+    		
     		//strip off classes for hiding our modal window
-    		jQuery("#agent-chooser-container").removeClass("is-hidden");
-    		jQuery("#agent-chooser-container").attr("aria-hidden",false);
+    		targetContainer.removeClass("is-hidden");
+    		targetContainer.attr("aria-hidden",false);
     		
     		//measure window dimensions
     		var winHt = jQuery(window).height();
     		var winWd = jQuery(window).width();
-    		var tgHt = jQuery("#agent-chooser-container").height();
-    		var tgWd = jQuery("#agent-chooser-container").width();
-    		console.log("window width: " + tgWd);
+    		var tgHt = targetContainer.height();
+    		var tgWd = targetContainer.width();
     	
     		if (resizeMode && resizeMode > 2) {
-    			console.log("setting to inherit");
-	    		jQuery("#agent-chooser-container").css("width",	"inherit");
-	    		jQuery("#agent-chooser-container").css("height","inherit");
-	    		jQuery("#agent-chooser-container").css("left",1);
-	    		jQuery("#agent-chooser-container").css("top",1);
-	    		//jQuery("#agent-chooser-container").attr("z-index",900);
+	    		targetContainer.css("width",	"inherit");
+	    		targetContainer.css("height","inherit");
+	    		targetContainer.css("left",1);
+	    		targetContainer.css("top",1);
+	    		//targetContainer.attr("z-index",900);
     			
     		} else if (winWd >= minWinWidthForSoloModal) {
-	    		jQuery("#agent-chooser-container").css("width",	"365px");
-	    		jQuery("#agent-chooser-container").css("min-width",	"365px");
-	    		jQuery("#agent-chooser-container").css("min-height","332px");
-	    		jQuery("#agent-chooser-container").css("top",(winHt-tgHt)-3);
-	    		jQuery("#agent-chooser-container").css("left",(winWd-tgWd)-3);
+	    		targetContainer.css("width",	"365px");
+	    		targetContainer.css("min-width",	"365px");
+	    		targetContainer.css("min-height","332px");
+	    		targetContainer.css("top",(winHt-tgHt)-3);
+	    		targetContainer.css("left",(winWd-tgWd)-3);
     		} else {
-	    		jQuery("#agent-chooser-container").css("min-height","332px");
-	    		jQuery("#agent-chooser-container").css("min-width",	(winWd-3));
-	    		jQuery("#agent-chooser-container").css("left",1);
-	    		jQuery("#agent-chooser-container").css("top",(winHt-tgHt)-3);
+	    		targetContainer.css("min-height","332px");
+	    		targetContainer.css("min-width",(winWd-3));
+	    		targetContainer.css("left",1);
+	    		targetContainer.css("top",(winHt-tgHt)-3);
     		}
+    		
+    		console.log("testBtn = " + jQuery("#testBtn").length);
+    		jQuery("#testBtn").focus();
     		
     	}
     	
@@ -177,7 +184,7 @@
 			  </div>
 			</div>
 		</section>
-		<span id="header">HERE IT IS!!</span>
+		<span id="header" style="visibility:hidden;"> </span>
 		
 	    <div id="agent-chooser-container" class="chat-wrapper-ac is-hidden" aria-hidden="true">
 		    <div class="chat-modal-wrapper">
@@ -196,11 +203,11 @@
 					    </div>
 					    
 					    <ul class="ac-body-link-list">
-					            <li><button><span>Wireless</span></button></li>
-					            <li><button type="button"><span>Digital TV</span></button></li>
-					            <li><button type="button"><span>Internet</span></button></li>
-					            <li><button type="button"><span>Home Phone</span></button></li>
-					            <li><button type="button"><span>Home Security</span></button></li>
+					            <li><button id="testBtn" class="tgBtn">Wireless</button></li>
+					            <li><button class="tgBtn">Digital TV</button></li>
+					            <li><button class="tgBtn">Internet</button></li>
+					            <li><button class="tgBtn">Home Phone</button></li>
+					            <li><button class="tgBtn">Home Security</button></li>
 					    </ul>
 				    </div>
 			    </div>

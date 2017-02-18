@@ -46,6 +46,16 @@ body {
   margin-bottom: 60px;
 }
 
+button:focus {
+   outline-style: dotted;
+    outline-color: #282828;
+    outline-width: 1px;
+}
+
+button.tgBtn {
+	border: none;
+}
+
 code {
 	padding: 0px;
 }
@@ -278,7 +288,9 @@ H1.chat-modal-header-title {
 }
 
 .ac-body-link-list li button {
-	border: none;
+	/*border: none;*/
+	
+	
 	background: none;
 	color: #3874C7;
 	padding-left: 0px;
