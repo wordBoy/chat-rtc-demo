@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Text Size Test | AT&T Chat Primer</title>
+
+	<style>
+		
+		/*
+		* No effect in the Android Chrome browser on any of the below classes
+		*
+		html {
+			-moz-text-size-adjust: auto; 
+			-webkit-text-size-adjust: auto; 
+			-ms-text-size-adjust: auto;
+		}*/
+		
+		.font-scale-1 {
+			-webkit-text-size-adjust: 100%; 
+			font-size: 100%;
+		}
+		.font-scale-2 {
+			-webkit-text-size-adjust: 80%; 
+			font-size: 100%;
+		}
+		.font-scale-3 {
+			-webkit-text-size-adjust: 60%; 
+			font-size: 100%;
+		}
+		
+		.scaling-button {
+			width: auto;
+			height: auto;
+			font-size: 100%;
+		}
+	</style>
+  </head>
+
+  <body>
+  <h1>Text size test 1</h1>
+  <p><strong>No scaling css.</strong> This is some content set in a very simple web page with no styling.</p>
+  <p class="font-scale-1"><strong>Scale-1: 100%, font-size:100%</strong> This is some content set in a very simple web page with no styling.</p>
+  <p class="font-scale-1"><strong>Scale-1: 100%, font-size:100%</strong> Text.</p>
+  <p class="font-scale-2"><strong>Scale-2: 80%, font-size:100%</strong> This is some content set in a very simple web page with no styling.</p>
+  <p class="font-scale-2"><strong>Scale-2: 80%, font-size:100%</strong> Text.</p>
+  <p class="font-scale-3"><strong>Scale-3: 60%, font-size:100%</strong> This is some content set in a very simple web page with no styling.</p>
+  <p class="font-scale-3"><strong>Scale-3: 60%, font-size:100%</strong> Text.</p>
+  
+  <div>
+	  <h2>Text size test 2</h2>
+	  <p class="font-scale-1">Text.</p>
+	  <p class="font-scale-2">Text.</p>
+	  <p class="font-scale-3">Text.</p>
+  </div>
+  
+  <section>
+	  <div>
+		  <h2>Text size test 3</h2>
+		  <p class="font-scale-1">Text.</p>
+		  <p class="font-scale-2">Text.</p>
+		  <p class="font-scale-3">Text.</p>
+	  </div>
+  </section> 
+  
+  <section>
+	  <div>
+		  <h2>Text size test</h2>
+		  <button>Text button</button><br/>
+		  <input type="button" value="Input button"><br/>
+		  <a href="#">Text link</a>
+	  </div>
+  </section>
+  
+    <section>
+	  <div>
+		  <h2>Text size test</h2>
+		  <button class="scaling-button">Text button</button><br/>
+		  <input  class="scaling-button" style="font-size:inherit;" type="button" value="Input button"><br/>
+		  <a style="font-size:inherit;" href="#">Text link</a>
+	  </div>
+  </section>
+  
+  <h2>What Have We Learned Today?</h2>
+  <h3>Android Chrome OS on Android 7.x</h3>
+  <ul>
+  	<li>The CSS property <code>-webkit-text-size-adjust</code>, Android Chrome browser 7.x, ignores values greater than 100%.</li>
+  	<li>Small amounts of text simply don't scale.</li>
+  </ul>
+  <h3>Bootstrap v3</h3>
+  <ul>
+  	<li>Bootstrap creates many problems with outline focus because they want a beautiful interface. Rip all of that out. Like this:
+  	<pre>
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+padding: 0;
+border: 0;
+}
+  	</pre>
+  	</li>
+  </ul>
+
+  </body>
+</html>

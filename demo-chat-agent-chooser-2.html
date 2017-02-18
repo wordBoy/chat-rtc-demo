@@ -7,6 +7,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
 
     <title>Chat Demos | AT&amp;T Chat Primer</title>
 
@@ -18,6 +19,8 @@
     
     <!-- AWG Common CSS file -->
     <link href="assets/css/a1-global.css" rel="stylesheet">
+    
+    <link media="all" rel="stylesheet" href="modal-window.css" />
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -35,6 +38,11 @@
     
     	function loadPageConfig() {
     		
+    		//id of element to check for and insert control
+    		TextResizeDetector.TARGET_ELEMENT_ID = 'header';
+    		//function to call once TextResizeDetector has init'd
+    		TextResizeDetector.USER_INIT_FUNC = init;
+    		
     		jQuery("#agent-chooser-container").keydown(function(event) {
     	        trapTabKey($(this), event);
     	    });
@@ -45,8 +53,9 @@
     		
     	}
     	
-    	function myNullFunction() {
-    		return true;
+    	function manageFocus(event) {
+    		console.log("noted");
+    		//console.log(event.currentTarget.val());
     	}
     	
     	function chatLaunchButton_show() {
@@ -61,33 +70,35 @@
     	
     	
     	function modalWindow_hide() {
+    		//stop responding to window resize commands
+    		jQuery(window).off( "resize" );
     		
     		//update visibility styles
     		jQuery("#agent-chooser-container").addClass("is-hidden");
     		jQuery("#agent-chooser-container").attr("aria-hidden",true);
     		
     		modalIsHidden = true;
+
+    		hideModal();
     		
     		//once we're done, show the chat launch button
     		chatLaunchButton_show();
-
-    		hideModal();
     	}
     
-    	function modalWindow_show() {
+    	function modalWindow_show(resizeMode) {
     		
-    		//create a container for our modal window
-    		//target so we only have to grab it once.
+    		var minWinWidthForSoloModal = 700;
     		var targetContainer;
     		
-    		//update our window status
-    		modalIsHidden = false;
+    		//respond to window resize commands
+    		 if (modalIsHidden) {
+    			 jQuery(window).resize(modalWindow_show);
+    			 modalIsHidden = false;
+    		 }
     		
     		//hide chat launch button
     		chatLaunchButton_hide();
     		
-    		//if jQuery can't find the modal window, we exit.
-    		//This typically occurs during development.
     		targetContainer = jQuery("#agent-chooser-container");
     		if (targetContainer.length == 0) {
     			//Houston, we have a problem.
@@ -98,8 +109,48 @@
     		targetContainer.removeClass("is-hidden");
     		targetContainer.attr("aria-hidden",false);
     		
-    		//hand off to the incredible modal window code to do it's incredible thing.
-    		showModal(targetContainer);
+    		//measure window dimensions
+    		var winHt = jQuery(window).height();
+    		var winWd = jQuery(window).width();
+    		var tgHt = targetContainer.height();
+    		var tgWd = targetContainer.width();
+    	
+    		if (resizeMode && resizeMode > 2) {
+    			//condition applies when:
+	    			//The window's font size is being changed, and the change
+	    			//has reached a significant difference from the original font size.
+	    		/*targetContainer.css("width",	"inherit");*/
+	    		targetContainer.css("height","inherit");
+	    		targetContainer.css("left",1);
+	    		targetContainer.css("top",1);
+	    		//targetContainer.attr("z-index",900);
+    			
+    		} else if (winWd >= minWinWidthForSoloModal) {
+    			//condition applies when:
+    				//The browser's window size is equal to or greater than 700.
+	    		/*targetContainer.css("width","365px");*/
+	    		
+	    		//targetContainer.css("min-height","332px");
+	    		//targetContainer.css("top",(winHt-tgHt)-3);
+	    		//targetContainer.css("left",(winWd-tgWd)-3);
+	    		targetContainer.css("right",0);
+	    		targetContainer.css("bottom",0);
+	    		targetContainer.css("margin","0px");
+	    		targetContainer.css("width","auto");
+	    		targetContainer.css("min-width","365px");
+    		} else {
+    			//condition applies when:
+				//The browser's window size is smaller than 700.
+				//This should apply in most mobile conditions
+	    		//targetContainer.css("min-height","332px");
+	    		targetContainer.css("left",1);
+	    		//targetContainer.css("top",(winHt-tgHt)-3);
+	    		targetContainer.css("right",none);
+	    		targetContainer.css("bottom",0);
+	    		//targetContainer.css("width","100%");
+    		}
+    		
+    		showModal(jQuery("#agent-chooser-container"));
     		
     	}
     	
@@ -115,6 +166,17 @@
         		event.preventDefault();
         	}
     	}
+    	
+
+		function init()  {
+		   var baseFontSize = TextResizeDetector.addEventListener(onFontResize,null);
+		}
+		
+		function onFontResize(e,args) {
+			console.log("resizing");
+			var sizeGap = args[0].iSize - args[0].iBase;
+			if (!modalIsHidden) modalWindow_show(sizeGap);
+		}
     
     </script>
     
@@ -166,12 +228,10 @@
 					  	<div class="form-group">
 						    <a class="btn btn-default" href="size-text-window-2.html" role="button">Text Size Test 2</a>
 					  	</div>
-					  	<div class="form-group">
-						    <a class="btn btn-default" href="quick-tests.html" role="button">Quick Tests</a>
-					  	</div>
 				  </div>
 				</div>
 			</section>
+			<span id="header" style="visibility:hidden;"> </span>
 	    </div><!-- /.container -->
     </div><!-- /#mainPage  -->
     
@@ -198,7 +258,7 @@
     <div id="chat-launch-wrapper">
     	<div aria-live="polite" class="chat-wrapper">
     		<div style="cursor: pointer;" onclick="modalWindow_show();" onmouseover="this.style.cursor='pointer'">
-    			<button type="button" type="button" class="chat-btn-bottom chat-btn-main">Chat available</button>
+    			<button type="button" class="chat-btn-bottom chat-btn-main">Chat available</button>
     		</div>
     	</div>
     </div>
@@ -207,7 +267,7 @@
 	    <div class="chat-modal-wrapper">
 	    	<div class="chat-modal-header-wrapper">
 	    		<div class="chat-modal-header-title-wrapper">
-		    		<button id="chat-modal-header-close-btn" onclick="modalWindow_hide();" type="button" title="Close">X</button>
+		    		<button id="chat-modal-header-close-btn" onclick="modalWindow_hide();" type="button">X</button>
 		    		<h1 class="chat-modal-header-title">Chat with AT&amp;T</h1>
 	    		</div>
 	    	</div>
@@ -220,11 +280,11 @@
 				    </div>
 				    
 				    <ul class="ac-body-link-list">
-				            <li><button type="button" id="testBtn" class="tgBtn">Wireless</button></li>
-				            <li><button type="button" class="tgBtn">Digital TV</button></li>
-				            <li><button type="button" class="tgBtn">Internet</button></li>
-				            <li><button type="button" class="tgBtn">Home Phone</button></li>
-				            <li><button type="button" class="tgBtn">Home Security</button></li>
+				            <li><button id="testBtn" class="tgBtn">Wireless</button></li>
+				            <li><button class="tgBtn">Digital TV</button></li>
+				            <li><button class="tgBtn">Internet</button></li>
+				            <li><button class="tgBtn">Home Phone</button></li>
+				            <li><button class="tgBtn">Home Security</button></li>
 				    </ul>
 			    </div>
 		    </div>
@@ -242,6 +302,7 @@
     <script src="assets/js/bootstrap.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="assets/js/textresizedetector.js"></script>
     <script src="assets/js/modal-window.js"></script>
     <script src="assets/js/chat-common.js"></script>
   </body>

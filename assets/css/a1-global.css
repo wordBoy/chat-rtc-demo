@@ -46,11 +46,6 @@ body {
   margin-bottom: 60px;
 }
 
-button:focus {
-   outline-style: dotted;
-    outline-color: #282828;
-    outline-width: 1px;
-}
 
 button.tgBtn {
 	border: none;
@@ -208,15 +203,25 @@ a.nav-chat {
 .chat-wrapper-ac
 {
 	background-color: #fff;
-	font-size: 16px;
-	min-height: 332px;
-	min-width: 365px;
 	overflow:hidden;
 	position: absolute;
 	z-index: 9999999;
 	border-radius: 4px;
 	overflow-wrap: break-word;
 	box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.5);
+	box-sizing: border-box;
+	right: 1px;
+	bottom: 1px;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+@media screen and (max-width: 500px) {
+   .chat-wrapper-ac
+	{
+		left: 1px;
+		bottom: 1px;
+	}
 }
 
 .chat-modal-wrapper {
@@ -336,7 +341,7 @@ H1.chat-modal-header-title {
 	font-family: Omnes_ATTW02Medium, arial, sans-serif !important;
 	background-position: center 48%;
 	background-repeat: no-repeat;
-	background: #0574ac;
+	background-color: #0574ac;
 }
 
 .chat-wrapper-2

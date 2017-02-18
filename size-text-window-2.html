@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Text Size Test | AT&T Chat Primer</title>
+
+	<style>
+		
+		/*
+		* No effect in the Android Chrome browser on any of the below classes
+		*/
+		html {
+			-moz-text-size-adjust: auto; 
+			-webkit-text-size-adjust: auto; 
+			-ms-text-size-adjust: auto;
+		}*/
+		
+		.font-scale-1 {
+			-webkit-text-size-adjust: 100%; 
+			font-size: 100%;
+		}
+		.font-scale-2 {
+			-webkit-text-size-adjust: 80%; 
+			font-size: 100%;
+		}
+		.font-scale-3 {
+			-webkit-text-size-adjust: 60%; 
+			font-size: 100%;
+		}
+	</style>
+  </head>
+
+  <body>
+  <h1>Text size test</h1>
+  <p class="font-scale-1">Text.</p>
+  <p class="font-scale-2">Text.</p>
+  <p class="font-scale-3">Text.</p>
+
+  </body>
+</html>

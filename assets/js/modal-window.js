@@ -169,6 +169,7 @@ function setFocusToFirstItemInModal(obj){
 
     // set the focus to the first keyboard focusable item
     o.filter(focusableElementsString).filter(':visible').first().focus();
+    //o.filter(focusableElementsString).filter(':visible').first().triggerHandler("focus");
 }
 
 function showModal(obj) {
@@ -184,7 +185,7 @@ function showModal(obj) {
     })
 
     // save current focus
-    focusedElementBeforeModal = jQuery(':focus');
+    focusedElementBeforeModal = jQuery( document.activeElement );
 
     setFocusToFirstItemInModal(obj);
 }
@@ -200,4 +201,6 @@ function hideModal() {
 
     // set focus back to element that had it before the modal was opened
     focusedElementBeforeModal.focus();
+    
+    
 }
