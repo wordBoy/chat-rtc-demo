@@ -53,8 +53,8 @@
     		jQuery(window).off( "resize" );
     		
     		//update visibility styles
-    		jQuery("#touch-guide-container").addClass("is-hidden");
-    		jQuery("#touch-guide-container").attr("aria-hidden",true);
+    		jQuery("#agent-chooser-container").addClass("is-hidden");
+    		jQuery("#agent-chooser-container").attr("aria-hidden",true);
     		
     		modalIsHidden = true;
     		
@@ -73,16 +73,16 @@
     		//hide chat launch button
     		chatLaunchButton_hide();
     		
-    		jQuery("#touch-guide-container").removeClass("is-hidden");
-    		jQuery("#touch-guide-container").attr("aria-hidden",false);
+    		jQuery("#agent-chooser-container").removeClass("is-hidden");
+    		jQuery("#agent-chooser-container").attr("aria-hidden",false);
     		
     		var winHt = jQuery(window).height();
     		var winWd = jQuery(window).width();
-    		var tgHt = jQuery("#touch-guide-container").height();
-    		var tgWd = jQuery("#touch-guide-container").width();
+    		var tgHt = jQuery("#agent-chooser-container").height();
+    		var tgWd = jQuery("#agent-chooser-container").width();
     		
-    		jQuery("#touch-guide-container").css("top",(winHt-tgHt)-3);
-    		jQuery("#touch-guide-container").css("left",(winWd-tgWd)-3);
+    		jQuery("#agent-chooser-container").css("top",(winHt-tgHt)-3);
+    		jQuery("#agent-chooser-container").css("left",(winWd-tgWd)-3);
     		
     	}	
     
@@ -136,26 +136,33 @@
 			</div>
 		</section>
 		
-	    <div id="touch-guide-container" class="chat-wrapper-tg is-hidden" aria-hidden="true">
-		    <div class="modal-window-wrapper">
-		    	<div id="tg-header" style="text-align:left;"><span id="titlewrap">Chat with AT&amp;T</span><button id="close-button" onclick="modalWindow_hide();" type="button"><span>X</span></button></div>
-		    	<div id="tg-breadCrumbBar">Home / Support</div>
-			    <div id="tc-2" role="main">
-				 	<div>
-				        <p>Thank you for choosing AT&amp;T Chat. To get started, please answer a few questions.</>
-				        <p>Which AT&amp;T product or service would you like help with?</p>
+	    <div id="agent-chooser-container" class="chat-wrapper-ac is-hidden" aria-hidden="true">
+		    <div class="chat-modal-wrapper">
+		    	<div class="chat-modal-header-wrapper">
+		    		<div class="chat-modal-header-title-wrapper">
+			    		<h1 class="chat-modal-header-title">Chat with AT&amp;T</h1>
+			    		<button id="chat-modal-header-close-btn" onclick="modalWindow_hide();" type="button">X</button>
+		    		</div>
+		    	</div>
+		    	<div class="ac-body-wrapper">
+				    <div id="tc-2" role="main">
+					 	<div>
+					        <h2 class="ac-sub-titles">Thank you for choosing AT&amp;T Chat. 
+					        To get started, please answer a few questions.</h2>
+					        <h2 class="ac-sub-titles">Which AT&amp;T product or service would you like help with?</h2>
+					    </div>
+					    
+					    <ul class="ac-body-link-list">
+					            <li><button><span>Wireless</span></button></li>
+					            <li><button type="button"><span>Digital TV</span></button></li>
+					            <li><button type="button"><span>Internet</span></button></li>
+					            <li><button type="button"><span>Home Phone</span></button></li>
+					            <li><button type="button"><span>Home Security</span></button></li>
+					    </ul>
 				    </div>
-				    
-				    <ul class="inq-72-options">
-				            <li style="display:table"><button type="button"><span>Wireless</span></button></li>
-				            <li style="display:table"><button type="button"><span>Digital TV</span></button></li>
-				            <li style="display:table"><button type="button"><span>Internet</span></button></li>
-				            <li style="display:table"><button type="button"><span>Home Phone</span></button></li>
-				            <li style="display:table"><button type="button"><span>Home Security</span></button></li>
-				    </ul>
 			    </div>
 			</div><!-- /modal-window-wrapper -->
-		</div><!-- /touch-guide-container -->
+		</div><!-- /agent-chooser-container -->
 		
     </div><!-- /.container -->
     
