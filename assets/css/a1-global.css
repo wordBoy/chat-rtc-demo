@@ -17,6 +17,7 @@ A11y Labs Global CSS File
 
 
 /*
+* Reference for colors chosen in this demo
 * Very light gray - warmer: #F5F9F8
 * 
 * Adobe Honeypot
@@ -47,7 +48,7 @@ body {
 }
 
 
-button.tgBtn {
+button.acListItemBtn {
 	border: none;
 }
 
@@ -376,6 +377,23 @@ H1.chat-modal-header-title {
 	padding-right: 0px;
 }
 
+/*
+* Modal Window Overlay - this is from the Incredible Accessible Modal Window Code. 
+* See demo-chat-agent-chooser.html script notes for additional information.
+*/
+#modalOverlay {
+	width:100%;
+	height:100%;
+	z-index:2; /* places the modal overlay between the main page and the modal dialog*/
+	background-color:#000;
+	opacity:0.5;
+	position:fixed;
+	top:0;
+	left:0;
+	display:none;
+	margin:0;
+	padding:0;
+} 
 
 
 

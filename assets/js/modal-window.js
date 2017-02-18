@@ -82,6 +82,8 @@ var focusedElementBeforeModal;
 //});
 
 function trapEscapeKey(obj, evt) {
+	
+	console.log("trapEscapeKey()");
 
     // if escape pressed
     if (evt.which == 27) {
@@ -91,7 +93,7 @@ function trapEscapeKey(obj, evt) {
 
         // get list of focusable items
         var cancelElement;
-        cancelElement = o.filter("#cancel")
+        cancelElement = o.filter("#chat-modal-header-close-btn")
 
         // close the modal window
         cancelElement.click();
@@ -172,7 +174,11 @@ function setFocusToFirstItemInModal(obj){
     //o.filter(focusableElementsString).filter(':visible').first().triggerHandler("focus");
 }
 
-function showModal(obj) {
+function focusOnItem(obj) {
+    obj.filter(focusableElementsString).filter(':visible').first().focus();
+}
+
+function showModal(obj, focusOnFirst) {
     jQuery('#mainPage').attr('aria-hidden', 'true'); // mark the main page as hidden
     jQuery('#modalOverlay').css('display', 'block'); // insert an overlay to prevent clicking and make a visual change to indicate the main apge is not available
     
@@ -180,14 +186,16 @@ function showModal(obj) {
     //jQuery('#modal').attr('aria-hidden', 'false'); // mark the modal window as visible
 
     // attach a listener to redirect the tab to the modal window if the user somehow gets out of the modal window
-    jQuery('body').on('focusin','#mainPage',function() {
-        setFocusToFirstItemInModal(jQuery('#modal'));
-    })
+    if (focusOnFirst) {
+	    jQuery('body').on('focusin','#mainPage',function() {
+	        setFocusToFirstItemInModal(jQuery('#modal'));
+	    })
+    }
 
     // save current focus
     focusedElementBeforeModal = jQuery( document.activeElement );
 
-    setFocusToFirstItemInModal(obj);
+    if (focusOnFirst) setFocusToFirstItemInModal(obj);
 }
 
 function hideModal() {

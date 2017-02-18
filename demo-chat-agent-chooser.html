@@ -31,10 +31,29 @@
     
     <script>
     
+    	/**
+    	* PLEASE NOTE!
+    	* ------------
+    	* Since this code is integrated a fair amount with the Incredible Accessible Modal Window
+    	* code. Note that I use "IAMW" to reference that code set. Also, please see the git hub 
+    	* codebase to know and understand the latest version: http://gdkraus.github.io/accessible-modal-dialog/    	*
+    	*/
+    	
+    	//When true, the agent chooser modal is not visible
     	var modalIsHidden = true;
-    
+    	
+    	//When true, means that the header content in the agent chooser has
+    	//already been presented to the user. If they had a screen reader running,
+    	//it would have read the full header, and then be removed.
+    	var acHeaderAlreadyRead = false;
+    	
+    	/**
+    	* Fired once jQuery calls it's ready() function. To see where this is called from,
+    	* open /assets/js/chat-common and search for 'ATM.pageReady'.
+    	*/
     	function loadPageConfig() {
     		
+    		//listen for the tab key
     		jQuery("#agent-chooser-container").keydown(function(event) {
     	        trapTabKey($(this), event);
     	    });
@@ -45,36 +64,54 @@
     		
     	}
     	
-    	function myNullFunction() {
-    		return true;
-    	}
-    	
+    	/**
+    	* Displays the chat launch button. Only needed after it is hidden.
+    	*/
     	function chatLaunchButton_show() {
     		jQuery("#chat-launch-wrapper").css("aria-hidden",false);
     		jQuery("#chat-launch-wrapper").removeClass("is-hidden");
     	}
     	
+    	/**
+    	* Hides the chat launch button.
+    	*/
     	function chatLaunchButton_hide() {
     		jQuery("#chat-launch-wrapper").css("aria-hidden",true);
     		jQuery("#chat-launch-wrapper").addClass("is-hidden");
     	}
     	
-    	
+    	/**
+    	* Hides the modal that is open by associating the appropriate CSS, then
+    	* calling the IAMW code to complete the hiding.
+    	*/
     	function modalWindow_hide() {
+    		
+    		//set this false so that the header is read
+    		//the next time the agent chooser is opened.
+    		acHeaderAlreadyRead = false;
     		
     		//update visibility styles
     		jQuery("#agent-chooser-container").addClass("is-hidden");
     		jQuery("#agent-chooser-container").attr("aria-hidden",true);
     		
+    		//set modal status
     		modalIsHidden = true;
     		
     		//once we're done, show the chat launch button
     		chatLaunchButton_show();
-
+			
+    		//call the IAMW function to bring it home.
     		hideModal();
     	}
-    
+    	
+	    /**
+	    * Displays the appropriate modal window. This function is very integrated into the
+	    * demo, so it displays the agent chooser specifically, then hands off to the IAMW
+	    * to carry it home and display the modal window.
+	    */
     	function modalWindow_show() {
+    		
+    		var focusOnFirst = false;
     		
     		//create a container for our modal window
     		//target so we only have to grab it once.
@@ -99,21 +136,29 @@
     		targetContainer.attr("aria-hidden",false);
     		
     		//hand off to the incredible modal window code to do it's incredible thing.
-    		showModal(targetContainer);
+    		showModal(targetContainer, focusOnFirst);
     		
+    		//If the header content has not yet been read, bind it to the first item
+    		//in the agent chooser.
+    		if (!acHeaderAlreadyRead) {
+    			jQuery("#ac-first-btn").attr("aria-describedby","ac-window-title ac-subhead-1 ac-subhead-2");
+    			jQuery("#ac-first-btn").blur(tgHeaderRead);
+    		}
+    		
+    		//focus on the intended item here, which is the initial button.
+    		focusOnItem(jQuery("#ac-first-btn"));    		
     	}
     	
-    	function setModalItems() {
-    		var tabRestartPt = jQuery("[data-circularity='start']");
-    		var tabEndPt = jQuery("[data-circularity='end']");
-    		
-    		tabEndPt.blur(modelEndPtExit);
-
-        	function modelEndPtExit(event) {
-        		console.log("blur noted");
-        		tabRestartPt.focus();
-        		event.preventDefault();
-        	}
+	    /**
+	    * Event handler attached to the first list item in the agent chooser
+	    * list of site options. Once the 'blur' event occurs, meaning that first
+	    * item loses focus, this event is called where we remove the binding
+	    * so that the header content is not repeated unless the user closes the 
+	    * modal and re-opens it.
+	    */
+    	function tgHeaderRead(evt) {
+    		acHeaderAlreadyRead = true;
+    		jQuery("#ac-first-btn").removeAttr("aria-describedby");
     	}
     
     </script>
@@ -207,24 +252,24 @@
 	    <div class="chat-modal-wrapper">
 	    	<div class="chat-modal-header-wrapper">
 	    		<div class="chat-modal-header-title-wrapper">
-		    		<button id="chat-modal-header-close-btn" onclick="modalWindow_hide();" type="button" title="Close">X</button>
-		    		<h1 class="chat-modal-header-title">Chat with AT&amp;T</h1>
+		    		<button id="chat-modal-header-close-btn" onclick="modalWindow_hide();" type="button" title="Close Chat"><img src="assets/images/close.png" height="13" width="12" alt=""></button>
+		    		<h1 id="ac-window-title" class="chat-modal-header-title">Chat with AT&amp;T</h1>
 	    		</div>
 	    	</div>
 	    	<div class="ac-body-wrapper">
 			    <div id="tc-2" role="main">
 				 	<div>
-				        <h2 class="ac-sub-titles">Thank you for choosing AT&amp;T Chat. <br/>
+				        <h2 id="ac-subhead-1" class="ac-sub-titles">Thank you for choosing AT&amp;T Chat. <br/>
 				        To get started, please answer a few questions.</h2>
-				        <h2 class="ac-sub-titles">Which AT&amp;T product or service<br/>would you like help with?</h2>
+				        <h2 id="ac-subhead-2" class="ac-sub-titles">Which AT&amp;T product or service<br/>would you like help with?</h2>
 				    </div>
 				    
 				    <ul class="ac-body-link-list">
-				            <li><button type="button" id="testBtn" class="tgBtn">Wireless</button></li>
-				            <li><button type="button" class="tgBtn">Digital TV</button></li>
-				            <li><button type="button" class="tgBtn">Internet</button></li>
-				            <li><button type="button" class="tgBtn">Home Phone</button></li>
-				            <li><button type="button" class="tgBtn">Home Security</button></li>
+				            <li><button type="button" id="ac-first-btn" class="acListItemBtn">Wireless</button></li>
+				            <li><button type="button" class="acListItemBtn">Digital TV</button></li>
+				            <li><button type="button" class="acListItemBtn">Internet</button></li>
+				            <li><button type="button" class="acListItemBtn">Home Phone</button></li>
+				            <li><button type="button" class="acListItemBtn">Home Security</button></li>
 				    </ul>
 			    </div>
 		    </div>
