@@ -200,207 +200,329 @@ a.nav-chat {
     width: 1px !important;
 }
 
+
+/* Chat Demo Common Modal Window Styles
+------------------------------------------------------------*/
+	
+	.chat-container
+	{
+		background-color: #fff;
+		overflow:hidden;
+		position: absolute;
+		z-index: 9999999;
+		border-radius: 4px;
+		overflow-wrap: break-word;
+		box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.5);
+		box-sizing: border-box;
+		right: 1px;
+		bottom: 1px;
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+
+	@media screen and (max-width: 500px) {
+	   .chat-container
+		{
+			left: 1px;
+			bottom: 1px;
+		}
+	}
+	
+	.chat-modal-wrapper {
+		padding: 0px;
+	}
+	
+	.chat-modal-header-title-wrapper {
+		padding-top: 14px;
+		padding-left: 14px;
+		padding-bottom: 8px;
+		color: #fff;
+		
+	}
+	
+	.chat-modal-footer {
+		height: 30px;
+		width: 100%;
+		background-color:#EEEEEE;
+		border: none;
+		margin: none;
+		padding: none;
+		border-top: 1px solid #c9c9c9;
+	}
+	
+	#chat-modal-header-close-btn {
+		margin-right: 20px;
+		margin-bottom: 12px;
+		background-color: none;
+		background: #fff;
+		border: none;
+		float:right;
+		color: #000;
+		border-radius: 12px;
+		font-size: 0.9em;
+		font-weight: bold;
+	}
+	
+	H1.chat-modal-header-title {
+		display: inline-block;
+		font-size: 1.6em;
+		line-height: 1.0em;
+		margin: 0px;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		padding: 0px;
+	}
+	
+	.chat-modal-header-wrapper {
+		vertical-align: middle;
+		background-color: #EF6F00;
+		width: 100%;
+	}
+	
+	.chat-modal-body {
+		margin: 1.5rem;
+	}
+
 /* Chat-Touch-Guide-Demo
 ------------------------------------------------------------*/
-/*
-* height and width are 
-*/
-.chat-wrapper-ac
-{
-	background-color: #fff;
-	overflow:hidden;
-	position: absolute;
-	z-index: 9999999;
-	border-radius: 4px;
-	overflow-wrap: break-word;
-	box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.5);
-	box-sizing: border-box;
-	right: 1px;
-	bottom: 1px;
-	margin-right: 10px;
-	margin-left: 10px;
-}
-
-@media screen and (max-width: 500px) {
-   .chat-wrapper-ac
-	{
-		left: 1px;
-		bottom: 1px;
+	
+	.ac-msg {
+		font-size: 1.0em;
+	} 
+	
+	.ac-sub-titles {
+		border: none;
+		font-size: 1.2rem;
+		font-weight: bold;
+		margin-top: 10px;
 	}
-}
-
-.chat-modal-wrapper {
-	padding: 0px;
-}
-
-.ac-msg {
-	font-size: 1.0em;
-} 
-
-.chat-modal-header-title-wrapper {
-	padding-top: 14px;
-	padding-left: 14px;
-	padding-bottom: 8px;
-	color: #fff;
 	
-}
-
-#chat-modal-header-close-btn {
-	margin-right: 20px;
-	margin-bottom: 12px;
-	background-color: none;
-	background: #fff;
-	border: none;
-	float:right;
-	color: #000;
-	border-radius: 12px;
-	font-size: 0.9em;
-	font-weight: bold;
-}
-
-H1.chat-modal-header-title {
-	display: inline-block;
-	font-size: 1.6em;
-	line-height: 1.0em;
-	margin: 0px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	padding: 0px;
-}
-
-.chat-modal-header-wrapper {
-	vertical-align: middle;
-	background-color: #EF6F00;
-	width: 100%;
-}
-
-.ac-sub-titles {
-	border: none;
-	font-size: 1.2rem;
-	font-weight: bold;
-	margin-top: 10px;
-}
-
-.ac-body-wrapper {
-	margin: 1.5rem;
-}
-
-.ac-body-link-list {
-	margin: 0px;
-	margin-top: 10px;
-	padding: 0px;
-}
-
-.ac-body-link-list li {
-	list-style-type: none;
-	padding-top: 3px;
-	padding-bottom: 7px;
-}
-
-.ac-body-link-list li button {
-	/*border: none;*/
+	.ac-body-link-list {
+		margin: 0px;
+		margin-top: 10px;
+		padding: 0px;
+	}
 	
+	.ac-body-link-list li {
+		list-style-type: none;
+		padding-top: 3px;
+		padding-bottom: 7px;
+	}
 	
-	background: none;
-	color: #3874C7;
-	padding-left: 0px;
-}
+	.ac-body-link-list li button {
+		background: none;
+		color: #3874C7;
+		padding-left: 0px;
+	}
 
 /* Chat-Button-Demo
 ------------------------------------------------------------*/
 
-.is-hidden {
-	display: none;
-}
-
-.chat-wrapper
-{
-	position: fixed; 
-	right: 20px; 
-	z-index: 9999999; 
-	bottom: 0px; 
-	font-size: 16px;
-}
-
-.panel-wrapper
-{
-	max-width: 500px;
-}
-
-.chat-btn-bottom 
-{
-	padding: 10px 20px;
-	font-size: 125%;
-	border-radius: 8px 8px 0 0 !important;
-	-moz-border-radius: 8px 8px 0 0 !important;
-	-webkit-border-radius: 8px 8px 0 0 !important;
-	border: 0px;
-	min-height: 40px;
-	min-width: 181px;
-}
-
-.chat-btn-main
-{
-	cursor: pointer;
-	color: #fff;
-	font-family: Omnes_ATTW02Medium, arial, sans-serif !important;
-	background-position: center 48%;
-	background-repeat: no-repeat;
-	background-color: #0574ac;
-}
-
-.chat-wrapper-2
-{
-	width: 100%; 
-	position: fixed; 
-	right: 0px; 
-	z-index: 9999999; 
-	bottom: 0px; 
-	font-size: 16px;
-}
-
-.chat-btn-bottom-2
-{
-	font-size: 1.1875em;
-	border: 0px;
-	min-height: 40px;
-	min-width: 100%;
-	padding-left: 0px;
-	padding-right: 0px;
-}
-
-.chat-btn-main-2
-{
-	cursor: pointer;
-	color: #fff;
-	font-family: Omnes_ATTW02Medium, arial, sans-serif !important;
-	background-position: center 48%;
-	background-repeat: no-repeat;
-	background: #444444;
-	padding-left: 0px;
-	padding-right: 0px;
-}
+	.is-hidden {
+		display: none;
+	}
+	
+	.chat-wrapper
+	{
+		position: fixed; 
+		right: 20px; 
+		z-index: 9999999; 
+		bottom: 0px; 
+		font-size: 16px;
+	}
+	
+	.panel-wrapper
+	{
+		/*max-width: 500px;*/
+	}
+	
+	.chat-btn-bottom 
+	{
+		padding: 10px 20px;
+		font-size: 125%;
+		border-radius: 8px 8px 0 0 !important;
+		-moz-border-radius: 8px 8px 0 0 !important;
+		-webkit-border-radius: 8px 8px 0 0 !important;
+		border: 0px;
+		min-height: 40px;
+		min-width: 181px;
+	}
+	
+	.chat-btn-main
+	{
+		cursor: pointer;
+		color: #fff;
+		font-family: Omnes_ATTW02Medium, arial, sans-serif !important;
+		background-position: center 48%;
+		background-repeat: no-repeat;
+		background-color: #0574ac;
+	}
+	
+	.chat-wrapper-2
+	{
+		width: 100%; 
+		position: fixed; 
+		right: 0px; 
+		z-index: 9999999; 
+		bottom: 0px; 
+		font-size: 16px;
+	}
+	
+	.chat-btn-bottom-2
+	{
+		font-size: 1.1875em;
+		border: 0px;
+		min-height: 40px;
+		min-width: 100%;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	
+	.chat-btn-main-2
+	{
+		cursor: pointer;
+		color: #fff;
+		font-family: Omnes_ATTW02Medium, arial, sans-serif !important;
+		background-position: center 48%;
+		background-repeat: no-repeat;
+		background: #444444;
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	
+	/*
+	* Modal Window Overlay - this is from the Incredible Accessible Modal Window Code. 
+	* See demo-chat-agent-chooser.html script notes for additional information.
+	*/
+	#modalOverlay {
+		width:100%;
+		height:100%;
+		z-index:2; /* places the modal overlay between the main page and the modal dialog*/
+		background-color:#000;
+		opacity:0.5;
+		position:fixed;
+		top:0;
+		left:0;
+		display:none;
+		margin:0;
+		padding:0;
+	} 
 
 /*
-* Modal Window Overlay - this is from the Incredible Accessible Modal Window Code. 
-* See demo-chat-agent-chooser.html script notes for additional information.
-*/
-#modalOverlay {
-	width:100%;
-	height:100%;
-	z-index:2; /* places the modal overlay between the main page and the modal dialog*/
-	background-color:#000;
-	opacity:0.5;
-	position:fixed;
-	top:0;
-	left:0;
-	display:none;
-	margin:0;
-	padding:0;
-} 
+* Pre-chat Suvey Button
+* -------------------------------------------------------------*/
 
+	.chat-container-pcs
+	{
+		min-width: 400px;
+	}
 
+	@media screen and (max-width: 500px) {
+	   .chat-container-pcs
+		{
+			min-width: 0px;
+		}
+	}
+	
+	.chat-pcs-form-wrapper {
+		
+		border-radius: 12px;
+		padding-left: 12px;
+		padding-right: 12px;
+		padding-top: 8px;
+		padding-bottom: 12px;
+		margin-right: 20px;
+		background: #abe9ff; /* Old browsers */
+		background: -moz-linear-gradient(top, #abe9ff 0%, #d4f4ff 100%); /* FF3.6-15 */
+		background: -webkit-linear-gradient(top, #abe9ff 0%,#d4f4ff 100%); /* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, #abe9ff 0%,#d4f4ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#abe9ff', endColorstr='#d4f4ff',GradientType=0 ); /* IE6-9 */	
+	}
+	
+	.chat-pcs-sub-header {
+		border-bottom-style: dotted;
+		border-bottom-color: #222222;
+		border-bottom-width: 1px;
+		padding-bottom: 6px;
+		margin-bottom: 12px;
+		
+	}
+	
+	.chat-pcs-form-wrapper label {
+		display: block;
+		color: #0C0CAF;
+		font-size: 0.8em;
+		margin-bottom: 2px;
+	}
+	
+	.chat-pcs-form-wrapper input {
+		width: 100%;
+		border-radius: 6px;
+		border: 1px solid #0C2577;
+	}
+	
+	.chat-pcs-form-wrapper input::-moz-placeholder {
+		 color: #222120;
+		 font-size: 0.85em;
+	}
+	
+	.chat-pcs-form-wrapper input:-ms-input-placeholder {
+		 color: #222120;
+		 font-size: 0.85em;
+	}
+	
+	.chat-pcs-form-wrapper input::-webkit-input-placeholder {
+		 color: #222120;
+		 font-size: 0.85em;
+	}
+	
+	.chat-pcs-form-wrapper input:-moz-placeholder {
+		 color: #222120;
+		 font-size: 0.85em;
+	}
+	
+	.chat-pcs-submit-group {
+		border-top-style: dotted;
+		border-top-color: #222120;
+		border-top-width: 1px;
+		margin-top: 8px;
+		padding-top: 12px; 
+	}
+	
+	button.pcs-submit {
+		
+		position: absolute;
+		right: 10px;
+		
+		border: none;
+		padding-right: 20px;
+		padding-top: 9px;
+		padding-left: 20px;
+		padding-bottom: 9px;
+		border-radius: 8px;	
+		
+		color: #fff;
+		background: #0574ac;
+		background: -moz-linear-gradient(top, #078cc5 0%, #0574ac 50%, #0574ac 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #078cc5), color-stop(50%, #0574ac), color-stop(100%, #0574ac));
+		background: -webkit-linear-gradient(top, #078cc5 0%, #0574ac 50%, #0574ac 100%);
+		background: -o-linear-gradient(top, #078cc5 0%, #0574ac 50%, #0574ac 100%);
+		background: -ms-linear-gradient(top, #078cc5 0%, #0574ac 50%, #0574ac 100%);
+		background: linear-gradient(to bottom, #078cc5 0%, #0574ac 50%, #0574ac 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#078cc5', endColorstr='#0574ac', GradientType=0)
+	}
 
+	button.pcs-submit:hover {
+		color: #fff;
+		background-color: #0574ac;
+		background: -moz-linear-gradient(top, #0574ac 0%, #0574ac 50%, #078cc5 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #0574ac), color-stop(50%, #0574ac), color-stop(100%, #078cc5));
+		background: -webkit-linear-gradient(top, #0574ac 0%, #0574ac 50%, #078cc5 100%);
+		background: -o-linear-gradient(top, #0574ac 0%, #0574ac 50%, #078cc5 100%);
+		background: -ms-linear-gradient(top, #0574ac 0%, #0574ac 50%, #078cc5 100%);
+		background: linear-gradient(to bottom, #0574ac 0%, #0574ac 50%, #078cc5 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0574ac', endColorstr='#078cc5', GradientType=0);	
+	}
 
 
 

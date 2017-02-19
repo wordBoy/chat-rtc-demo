@@ -145,7 +145,7 @@
     		//in the agent chooser.
     		if (!acHeaderAlreadyRead) {
     			winConfig.firstFocusItemJQ.attr("aria-describedby",winConfig.headerPtrStr);
-    			winConfig.firstFocusItemJQ.blur(tgHeaderRead);
+    			winConfig.firstFocusItemJQ.blur(modalHeader_wasRead);
     		}
     		
     		//focus on the intended item here, which is the initial button.
@@ -159,7 +159,7 @@
 	    * so that the header content is not repeated unless the user closes the 
 	    * modal and re-opens it.
 	    */
-    	function tgHeaderRead(evt) {
+    	function modalHeader_wasRead(evt) {
     		acHeaderAlreadyRead = true;
     		winConfig.firstFocusItemJQ.removeAttr("aria-describedby");
     	}
@@ -195,7 +195,7 @@
 		    <!-- Breadcrumb bar -->
 		    <ol class="breadcrumb">
 			  <li><a href="index.html">Home</a></li>
-			  <li class="active">Touch Guide</li>
+			  <li class="active">Agent Chooser</li>
 			</ol>
 			
 		    <h1>Demo: Agent Chooser</h1>
@@ -252,7 +252,7 @@
     	</div>
     </div>
     
-    <div id="agent-chooser-container" class="chat-wrapper-ac is-hidden" aria-hidden="true">
+    <div id="agent-chooser-container" class="chat-container is-hidden" aria-hidden="true">
 	    <div class="chat-modal-wrapper">
 	    	<div class="chat-modal-header-wrapper">
 	    		<div class="chat-modal-header-title-wrapper">
@@ -260,8 +260,8 @@
 		    		<h1 id="ac-window-title" class="chat-modal-header-title">Chat with AT&amp;T</h1>
 	    		</div>
 	    	</div>
-	    	<div class="ac-body-wrapper">
-			    <div id="tc-2" role="main">
+	    	<div class="chat-modal-body">
+			    <div role="main">
 				 	<div>
 				        <h2 id="ac-subhead-1" class="ac-sub-titles">Thank you for choosing AT&amp;T Chat. <br/>
 				        To get started, please answer a few questions.</h2>

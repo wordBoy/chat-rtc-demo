@@ -145,7 +145,7 @@
     		//in the agent chooser.
     		if (!acHeaderAlreadyRead) {
     			winConfig.firstFocusItemJQ.attr("aria-describedby",winConfig.headerPtrStr);
-    			winConfig.firstFocusItemJQ.blur(tgHeaderRead);
+    			winConfig.firstFocusItemJQ.blur(modalHeader_wasRead);
     		}
     		
     		//focus on the intended item here, which is the initial button.
@@ -159,7 +159,7 @@
 	    * so that the header content is not repeated unless the user closes the 
 	    * modal and re-opens it.
 	    */
-    	function tgHeaderRead(evt) {
+    	function modalHeader_wasRead(evt) {
     		acHeaderAlreadyRead = true;
     		winConfig.firstFocusItemJQ.removeAttr("aria-describedby");
     	}
@@ -195,10 +195,10 @@
 		    <!-- Breadcrumb bar -->
 		    <ol class="breadcrumb">
 			  <li><a href="index.html">Home</a></li>
-			  <li class="active">Touch Guide</li>
+			  <li class="active">Pre-Chat Survey</li>
 			</ol>
 			
-		    <h1>Demo: Agent Chooser</h1>
+		    <h1>Demo: Pre-Chat Survey</h1>
 		    
 		    <!-- Demo options -->
 		    <section class="panel-wrapper">
@@ -252,7 +252,7 @@
     	</div>
     </div>
     
-    <div id="pcs-container" class="chat-wrapper-ac is-hidden" aria-hidden="true">
+    <div id="pcs-container" class="chat-container chat-container-pcs is-hidden" aria-hidden="true">
 	    <div class="chat-modal-wrapper">
 	    	<div class="chat-modal-header-wrapper">
 	    		<div class="chat-modal-header-title-wrapper">
@@ -260,31 +260,33 @@
 		    		<h1 id="ac-window-title" class="chat-modal-header-title">Chat with AT&amp;T</h1>
 	    		</div>
 	    	</div>
-	    	<div class="ac-body-wrapper">
-			    <div id="tc-2" role="main">
-				 	<div>
+	    	<div class="chat-modal-body">
+			    <div role="main">
+				 	<div class="chat-pcs-sub-header">
 				        <h2 id="pcs-subhead-1" class="ac-sub-titles">All fields required.</h2>
 				    </div>
 				    
 				    <form novalidate>
-				    	<div class="form-group">
+				    	<div class="form-group chat-pcs-form-wrapper">
 				    		<label>First Name</label>
-				    		<input id="pcs-first-btn" type="text" placeholder="first name here" required aria-required="true">
+				    		<input id="pcs-first-btn" type="text" placeholder=" first name here" required aria-required="true">
 				    	</div>
-				    	<div class="form-group">
+				    	<div class="form-group chat-pcs-form-wrapper">
 				    		<label for="last-name">Last Name</label>
-				    		<input id="last-name" type="text" placeholder="last name here" required aria-required="true">
+				    		<input id="last-name" type="text" placeholder=" last name here" required aria-required="true">
 				    	</div>
-				    	<div class="form-group">
+				    	<div class="form-group chat-pcs-form-wrapper">
 				    		<label for="account-num">Account Number</label>
-				    		<input id="account-num" type="text" placeholder="account number here" required aria-required="true">
+				    		<input id="account-num" type="text" placeholder=" account number here" required aria-required="true">
 				    	</div>
-				    	<div class="form-group">
-							<button>Cancel</button><button>Submit</button>
+				    	<div class="form-group chat-pcs-submit-group">
+							<button id="close-chat-pcs" class="btn btn-default" type="button">Cancel</button>
+							<button id="submit-pcs" class="pcs-submit" type="button">Submit</button>
 				    	</div>
 				    </form>
 			    </div>
 		    </div>
+			<div class="chat-modal-footer"></div>
 		</div><!-- /modal-window-wrapper -->
 	</div><!-- /pcs-container -->
 		
