@@ -63,6 +63,10 @@ H2 {
 	border-bottom-color: #000;
 }
 
+h2.panel-title {
+	border: none;
+}
+
 H3 {
 	font-size: 1.2em;
 	color: #000;
