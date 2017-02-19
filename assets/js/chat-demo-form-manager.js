@@ -9,13 +9,6 @@
 * 	Here's an example object: {"rootId":"pcs-first-btn","noErrors":true,"errStatement":"Please insert a first name"}
 */ 
 var formElements = [];
-
-/**
-* When true, means that the header content in the agent chooser has
-* already been presented to the user. If they had a screen reader running,
-* it would have read the full header, and then be removed.
-*/
-var acHeaderAlreadyRead = false;
 	    
 function formMgr_initialize(configObj) {
 	

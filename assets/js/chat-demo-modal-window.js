@@ -2,6 +2,13 @@
 var winConfig = {};
 
 /**
+* When true, means that the header content in the window has
+* already been presented to the user. If they had a screen reader running,
+* it would have read the full header, and then be removed.
+*/
+var acHeaderAlreadyRead = false;
+
+/**
 * Displays the chat launch button. Only needed after it is hidden.
 */
 function chatLaunchButton_show() {
