@@ -40,50 +40,7 @@ var focusableElementsString = "a[href], area[href], input:not([disabled]), selec
 // store the item that has focus before opening the modal window
 var focusedElementBeforeModal;
 
-//$(document).ready(function() {
-    
-	//handled by modalWindow_show()
-	/*
-	jQuery('#startModal').click(function(e) {
-        showModal($('#modal'));
-    });
-    */
-	
-	//handled by: modalWindow_hide()
-	/*
-    jQuery('#cancel').click(function(e) {
-        hideModal();
-    });
-    jQuery('#cancelButton').click(function(e) {
-        hideModal();
-    });
-    jQuery('#modalCloseButton').click(function(e) {
-        hideModal();
-    });
-    */
-	
-	//no enter button
-	/*
-    jQuery('#enter').click(function(e) {
-        enterButtonModal();
-    });
-    */
-	
-	//see loadPageConfig()
-	/*
-    jQuery('#modal').keydown(function(event) {
-        trapTabKey($(this), event);
-    })
-    jQuery('#modal').keydown(function(event) {
-        trapEscapeKey($(this), event);
-    })
-    */
-
-//});
-
 function trapEscapeKey(obj, evt) {
-	
-	console.log("trapEscapeKey()");
 
     // if escape pressed
     if (evt.which == 27) {
@@ -93,7 +50,7 @@ function trapEscapeKey(obj, evt) {
 
         // get list of focusable items
         var cancelElement;
-        cancelElement = o.filter("#chat-modal-header-close-btn")
+        cancelElement = o.filter(evt.data.closeBtn);
 
         // close the modal window
         cancelElement.click();

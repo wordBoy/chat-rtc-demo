@@ -39,6 +39,9 @@
     	* codebase to know and understand the latest version: http://gdkraus.github.io/accessible-modal-dialog/    	*
     	*/
     	
+    	var winConfig = {};
+    	
+    	
     	//When true, the agent chooser modal is not visible
     	var modalIsHidden = true;
     	
@@ -53,12 +56,16 @@
     	*/
     	function loadPageConfig() {
     		
+        	winConfig.rootPanelObjJQ = jQuery("#agent-chooser-container");
+        	winConfig.firstFocusItemJQ = jQuery("#ac-first-btn");
+        	winConfig.closeButtonIdStr = "#chat-modal-header-close-btn";
+    		
     		//listen for the tab key
-    		jQuery("#agent-chooser-container").keydown(function(event) {
+    		winConfig.rootPanelObjJQ.on("keydown",{closeBtn:winConfig.closeButtonIdStr},function(event) {
     	        trapTabKey($(this), event);
     	    });
     		
-    	    jQuery("#agent-chooser-container").keydown(function(event) {
+    		winConfig.rootPanelObjJQ.on("keydown",{closeBtn:winConfig.closeButtonIdStr},function(event) {
     	        trapEscapeKey($(this), event);
     	    });
     		
@@ -91,8 +98,8 @@
     		acHeaderAlreadyRead = false;
     		
     		//update visibility styles
-    		jQuery("#agent-chooser-container").addClass("is-hidden");
-    		jQuery("#agent-chooser-container").attr("aria-hidden",true);
+    		winConfig.rootPanelObjJQ.addClass("is-hidden");
+    		winConfig.rootPanelObjJQ.attr("aria-hidden",true);
     		
     		//set modal status
     		modalIsHidden = true;
@@ -113,10 +120,6 @@
     		
     		var focusOnFirst = false;
     		
-    		//create a container for our modal window
-    		//target so we only have to grab it once.
-    		var targetContainer;
-    		
     		//update our window status
     		modalIsHidden = false;
     		
@@ -125,28 +128,27 @@
     		
     		//if jQuery can't find the modal window, we exit.
     		//This typically occurs during development.
-    		targetContainer = jQuery("#agent-chooser-container");
-    		if (targetContainer.length == 0) {
+    		if (winConfig.rootPanelObjJQ.length == 0) {
     			//Houston, we have a problem.
     			return;
     		}
     		
     		//strip off classes for hiding our modal window
-    		targetContainer.removeClass("is-hidden");
-    		targetContainer.attr("aria-hidden",false);
+    		winConfig.rootPanelObjJQ.removeClass("is-hidden");
+    		winConfig.rootPanelObjJQ.attr("aria-hidden",false);
     		
     		//hand off to the incredible modal window code to do it's incredible thing.
-    		showModal(targetContainer, focusOnFirst);
+    		showModal(winConfig.rootPanelObjJQ, focusOnFirst);
     		
     		//If the header content has not yet been read, bind it to the first item
     		//in the agent chooser.
     		if (!acHeaderAlreadyRead) {
-    			jQuery("#ac-first-btn").attr("aria-describedby","ac-window-title ac-subhead-1 ac-subhead-2");
-    			jQuery("#ac-first-btn").blur(tgHeaderRead);
+    			winConfig.firstFocusItemJQ.attr("aria-describedby","ac-window-title ac-subhead-1 ac-subhead-2");
+    			winConfig.firstFocusItemJQ.blur(tgHeaderRead);
     		}
     		
     		//focus on the intended item here, which is the initial button.
-    		focusOnItem(jQuery("#ac-first-btn"));    		
+    		focusOnItem(winConfig.firstFocusItemJQ);    		
     	}
     	
 	    /**
@@ -158,7 +160,7 @@
 	    */
     	function tgHeaderRead(evt) {
     		acHeaderAlreadyRead = true;
-    		jQuery("#ac-first-btn").removeAttr("aria-describedby");
+    		winConfig.firstFocusItemJQ.removeAttr("aria-describedby");
     	}
     
     </script>
