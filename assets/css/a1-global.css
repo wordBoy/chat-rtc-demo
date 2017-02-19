@@ -237,7 +237,6 @@ a.nav-chat {
 		padding-left: 14px;
 		padding-bottom: 8px;
 		color: #fff;
-		
 	}
 	
 	.chat-modal-footer {
@@ -409,7 +408,7 @@ a.nav-chat {
 	} 
 
 /*
-* Pre-chat Suvey Button
+* Pre-chat Suvey Demo
 * -------------------------------------------------------------*/
 
 	.chat-container-pcs
@@ -523,6 +522,65 @@ a.nav-chat {
 		background: -ms-linear-gradient(top, #0574ac 0%, #0574ac 50%, #078cc5 100%);
 		background: linear-gradient(to bottom, #0574ac 0%, #0574ac 50%, #078cc5 100%);
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0574ac', endColorstr='#078cc5', GradientType=0);	
+	}
+
+/*
+* Chat Window Demo
+* -------------------------------------------------------------*/
+
+	.chat-container-win
+		{
+			min-width: 400px;
+			border-radius: 0px;
+		}
+	
+	.chat-win-header-item {
+		/*position: absolute;*/
+		margin-right: 20px;
+		margin-bottom: 12px;
+		width: 30px; 
+		height: 30px; 
+		border: none;
+		background-color: transparent;
+		float:right;
+	}
+	
+	.test {
+		border: none; 
+		position: absolute; 
+		left: 0px; 
+		top: 0px;
+		width: 30px; 
+		height: 30px; 
+		background-color: transparent; 
+		cursor: pointer;
+	}
+	
+	.chat-win-modal-header-wrapper {
+		vertical-align: middle;
+		background-color: #F6F6F6;
+		width: 100%;
+		border: 1px solid #CBCBCB;
+	}
+	
+	.chat-win-header-title {
+		font-size: 1.1em;
+		font-weight: 500;
+		color: #666460;
+		max-width: 100px;
+		margin-bottom: 10px;
+		margin-top: 5px;
+		margin-left: 10px;
+	}
+
+	.chat-win-sub-header {
+		background-color: #F6F6F6;
+		border-bottom-style: dotted;
+		border-bottom-color: #222222;
+		border-bottom-width: 1px;
+		padding-bottom: 6px;
+		margin-bottom: 12px;
+		
 	}
 
 
