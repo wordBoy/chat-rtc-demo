@@ -7,9 +7,8 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
 
-    <title>Chat Demos | AT&T Chat Primer</title>
+    <title>Chat Demos | AT&amp;T Chat Primer</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -29,35 +28,267 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script>
+    
+    	/**
+    	* PLEASE NOTE!
+    	* ------------
+    	* Since this code is integrated a fair amount with the Incredible Accessible Modal Window
+    	* code. Note that I use "IAMW" to reference that code set. Also, please see the git hub 
+    	* codebase to know and understand the latest version: http://gdkraus.github.io/accessible-modal-dialog/    	*
+    	*/
+    	
+    	var winConfig = {};
+    	
+    	
+    	//When true, the agent chooser modal is not visible
+    	var modalIsHidden = true;
+    	
+    	//When true, means that the header content in the agent chooser has
+    	//already been presented to the user. If they had a screen reader running,
+    	//it would have read the full header, and then be removed.
+    	var acHeaderAlreadyRead = false;
+    	
+    	/**
+    	* Fired once jQuery calls it's ready() function. To see where this is called from,
+    	* open /assets/js/chat-common and search for 'ATM.pageReady'.
+    	*/
+    	function loadPageConfig() {
+    		
+        	winConfig.rootPanelObjJQ = jQuery("#pcs-container");
+        	winConfig.firstFocusItemJQ = jQuery("#pcs-first-btn");
+        	winConfig.closeButtonIdStr = "#chat-modal-header-close-btn";
+        	winConfig.headerPtrStr = "pcs-subhead-1";
+    		
+    		//listen for the tab key
+    		winConfig.rootPanelObjJQ.on("keydown",{closeBtn:winConfig.closeButtonIdStr},function(event) {
+    	        trapTabKey($(this), event);
+    	    });
+    		
+    		winConfig.rootPanelObjJQ.on("keydown",{closeBtn:winConfig.closeButtonIdStr},function(event) {
+    	        trapEscapeKey($(this), event);
+    	    });
+    		
+    	}
+    	
+    	/**
+    	* Displays the chat launch button. Only needed after it is hidden.
+    	*/
+    	function chatLaunchButton_show() {
+    		jQuery("#chat-launch-wrapper").css("aria-hidden",false);
+    		jQuery("#chat-launch-wrapper").removeClass("is-hidden");
+    	}
+    	
+    	/**
+    	* Hides the chat launch button.
+    	*/
+    	function chatLaunchButton_hide() {
+    		jQuery("#chat-launch-wrapper").css("aria-hidden",true);
+    		jQuery("#chat-launch-wrapper").addClass("is-hidden");
+    	}
+    	
+    	/**
+    	* Hides the modal that is open by associating the appropriate CSS, then
+    	* calling the IAMW code to complete the hiding.
+    	*/
+    	function modalWindow_hide() {
+    		
+    		//set this false so that the header is read
+    		//the next time the agent chooser is opened.
+    		acHeaderAlreadyRead = false;
+    		
+    		//update visibility styles
+    		winConfig.rootPanelObjJQ.addClass("is-hidden");
+    		winConfig.rootPanelObjJQ.attr("aria-hidden",true);
+    		
+    		//set modal status
+    		modalIsHidden = true;
+    		
+    		//once we're done, show the chat launch button
+    		chatLaunchButton_show();
+			
+    		//call the IAMW function to bring it home.
+    		hideModal();
+    	}
+    	
+	    /**
+	    * Displays the appropriate modal window. This function is very integrated into the
+	    * demo, so it displays the agent chooser specifically, then hands off to the IAMW
+	    * to carry it home and display the modal window.
+	    */
+    	function modalWindow_show() {
+    		
+    		var focusOnFirst = false;
+    		
+    		//update our window status
+    		modalIsHidden = false;
+    		
+    		//hide chat launch button
+    		chatLaunchButton_hide();
+    		
+    		//if jQuery can't find the modal window, we exit.
+    		//This typically occurs during development.
+    		if (winConfig.rootPanelObjJQ.length == 0) {
+    			//Houston, we have a problem.
+    			return;
+    		}
+    		
+    		//strip off classes for hiding our modal window
+    		winConfig.rootPanelObjJQ.removeClass("is-hidden");
+    		winConfig.rootPanelObjJQ.attr("aria-hidden",false);
+    		
+    		//hand off to the incredible modal window code to do it's incredible thing.
+    		showModal(winConfig.rootPanelObjJQ, focusOnFirst);
+    		
+    		//If the header content has not yet been read, bind it to the first item
+    		//in the agent chooser.
+    		if (!acHeaderAlreadyRead) {
+    			winConfig.firstFocusItemJQ.attr("aria-describedby",winConfig.headerPtrStr);
+    			winConfig.firstFocusItemJQ.blur(tgHeaderRead);
+    		}
+    		
+    		//focus on the intended item here, which is the initial button.
+    		focusOnItem(winConfig.firstFocusItemJQ);    		
+    	}
+    	
+	    /**
+	    * Event handler attached to the first list item in the agent chooser
+	    * list of site options. Once the 'blur' event occurs, meaning that first
+	    * item loses focus, this event is called where we remove the binding
+	    * so that the header content is not repeated unless the user closes the 
+	    * modal and re-opens it.
+	    */
+    	function tgHeaderRead(evt) {
+    		acHeaderAlreadyRead = true;
+    		winConfig.firstFocusItemJQ.removeAttr("aria-describedby");
+    	}
+    
+    </script>
+    
   </head>
 
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand nav-chat" href="index.html">Chat :: Primer</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a class="nav-chat" href="index.html">Home</a></li>
-            <li class="active"><a class="nav-chat" href="demos.html"><span class="glyphicon glyphicon-star glyph-menu" aria-hidden="true"></span>Demos</a></li>
-            <li><a class="nav-chat" href="topics.html">Topics</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-    <div class="container">
-	    <h1>Demo: Pre-Chat Survey</h1>
-	    <p>Content</p>
-	    
-    </div><!-- /.container -->
+  	<div id="mainPage" aria-hidden="false">
+	    <nav class="navbar navbar-inverse navbar-fixed-top">
+	      <div class="container">
+	        <div class="navbar-header">
+	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+	          <a class="navbar-brand nav-chat" href="index.html">Chat :: Primer</a>
+	        </div>
+	        <div id="navbar" class="collapse navbar-collapse">
+	          <ul class="nav navbar-nav">
+	            <li><a class="nav-chat" href="index.html">Home</a></li>
+	            <li class="active"><a class="nav-chat" href="demos.html"><span class="glyphicon glyphicon-star glyph-menu" aria-hidden="true"></span>Demos</a></li>
+	            <li><a class="nav-chat" href="topics.html">Topics</a></li>
+	          </ul>
+	        </div><!--/.nav-collapse -->
+	      </div>
+	    </nav>
+	
+	    <div class="container">
+		    <!-- Breadcrumb bar -->
+		    <ol class="breadcrumb">
+			  <li><a href="index.html">Home</a></li>
+			  <li class="active">Touch Guide</li>
+			</ol>
+			
+		    <h1>Demo: Agent Chooser</h1>
+		    
+		    <!-- Demo options -->
+		    <section class="panel-wrapper">
+			    <div class="panel panel-default">
+				  <div class="panel-heading">
+				    <h2 class="panel-title">Get Started with this Demo</h2>
+				  </div>
+				  <div class="panel-body">
+				  		<p>Each get started option below is also a link so you can read more about what is happening.</p>
+				  		<ol>
+					  		<li>Operate the Chat Launch Button, the last tabbable element on the page.</li>
+					  		<li>Explore the modal window that comes up and note how keyboard control behaves.</li>
+					  		<li>With a screen reader on, note how the title of the modal window is introduced.</li>
+					  		<li>Resize the windown with the modal open and note how it behaves.</li>
+					  		<li>Change the font size with the modal open and note how it behaves...or doesn't!</li>
+				  		</ol>
+				  </div>
+				</div>
+			</section>
+			
+			
+			
+	    </div><!-- /.container -->
+    </div><!-- /#mainPage  -->
+    
+	<!-- 
+	ARIA-speak control
+	<div style="border: 0px none; 
+		clip: rect(0px, 0px, 0px, 0px); 
+		height: 1px; 
+		margin: -1px; 
+		overflow: hidden; 
+		padding: 0px; 
+		position: absolute; 
+		width: 1px;" 
+		aria-relevant="additions" 
+		aria-live="polite" 
+		role="log" 
+		id="tc-acif-aria-speaker">
+			<div aria-hidden="true" style="display: none;">
+			        Thank you for choosing AT&amp;T Chat. To get started, please answer a few questions.
+			</div>
+	</div>
+	-->
+    
+    <div id="chat-launch-wrapper">
+    	<div aria-live="polite" class="chat-wrapper">
+    		<div style="cursor: pointer;" onclick="modalWindow_show();" onmouseover="this.style.cursor='pointer'">
+    			<button type="button" type="button" class="chat-btn-bottom chat-btn-main">Chat available</button>
+    		</div>
+    	</div>
+    </div>
+    
+    <div id="pcs-container" class="chat-wrapper-ac is-hidden" aria-hidden="true">
+	    <div class="chat-modal-wrapper">
+	    	<div class="chat-modal-header-wrapper">
+	    		<div class="chat-modal-header-title-wrapper">
+		    		<button id="chat-modal-header-close-btn" onclick="modalWindow_hide();" type="button" title="Close Chat"><img src="assets/images/close.png" height="13" width="12" alt=""></button>
+		    		<h1 id="ac-window-title" class="chat-modal-header-title">Chat with AT&amp;T</h1>
+	    		</div>
+	    	</div>
+	    	<div class="ac-body-wrapper">
+			    <div id="tc-2" role="main">
+				 	<div>
+				        <h2 id="pcs-subhead-1" class="ac-sub-titles">All fields required.</h2>
+				    </div>
+				    
+				    <form novalidate>
+				    	<div class="form-group">
+				    		<label>First Name</label>
+				    		<input id="pcs-first-btn" type="text" placeholder="first name here" required aria-required="true">
+				    	</div>
+				    	<div class="form-group">
+				    		<label for="last-name">Last Name</label>
+				    		<input id="last-name" type="text" placeholder="last name here" required aria-required="true">
+				    	</div>
+				    	<div class="form-group">
+				    		<label for="account-num">Account Number</label>
+				    		<input id="account-num" type="text" placeholder="account number here" required aria-required="true">
+				    	</div>
+				    	<div class="form-group">
+							<button>Cancel</button><button>Submit</button>
+				    	</div>
+				    </form>
+			    </div>
+		    </div>
+		</div><!-- /modal-window-wrapper -->
+	</div><!-- /pcs-container -->
+		
+	<div id="modalOverlay" tabindex="-1"></div>
 
 
     <!-- Bootstrap core JavaScript
@@ -68,5 +299,7 @@
     <script src="assets/js/bootstrap.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="assets/js/modal-window.js"></script>
+    <script src="assets/js/chat-common.js"></script>
   </body>
 </html>

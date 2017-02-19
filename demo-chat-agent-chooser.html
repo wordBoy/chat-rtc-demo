@@ -59,6 +59,7 @@
         	winConfig.rootPanelObjJQ = jQuery("#agent-chooser-container");
         	winConfig.firstFocusItemJQ = jQuery("#ac-first-btn");
         	winConfig.closeButtonIdStr = "#chat-modal-header-close-btn";
+        	winConfig.headerPtrStr = "ac-window-title ac-subhead-1 ac-subhead-2";
     		
     		//listen for the tab key
     		winConfig.rootPanelObjJQ.on("keydown",{closeBtn:winConfig.closeButtonIdStr},function(event) {
@@ -143,7 +144,7 @@
     		//If the header content has not yet been read, bind it to the first item
     		//in the agent chooser.
     		if (!acHeaderAlreadyRead) {
-    			winConfig.firstFocusItemJQ.attr("aria-describedby","ac-window-title ac-subhead-1 ac-subhead-2");
+    			winConfig.firstFocusItemJQ.attr("aria-describedby",winConfig.headerPtrStr);
     			winConfig.firstFocusItemJQ.blur(tgHeaderRead);
     		}
     		
