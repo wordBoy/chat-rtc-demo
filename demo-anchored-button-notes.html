@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Chat Demos | AT&T Chat Primer</title>
+    <title>Anchored Buttons 1 |  Accessibility Technique Examples</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -47,7 +47,6 @@
           <ul class="nav navbar-nav">
             <li><a class="nav-chat" href="index.html">Home</a></li>
             <li class="active"><a class="nav-chat" href="demos.html"><span class="glyphicon glyphicon-star glyph-menu" aria-hidden="true"></span>Demos</a></li>
-            <li><a class="nav-chat" href="topics.html">Topics</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -58,10 +57,11 @@
 	    <!-- Breadcrumb bar -->
 	    <ol class="breadcrumb">
 		  <li><a href="index.html">Home</a></li>
-		  <li class="active">Chat Launch Style 1</li>
+		  <li class="active">Anchor Button 1</li>
 		</ol>
 		
-	    <h1>Demo: Chat Launch Button (Style 1)</h1>
+	    <h1>Example 1: Anchor Button</h1>
+	    <p>The last tab order item in this page is an &quot;anchor button&quot;, which in our example is a <code>&lt;button&gt;</code> tag attached to the bottom of a window.
 	    
 	    <!-- Demo options -->
 	    <section class="panel-wrapper">
@@ -71,10 +71,10 @@
 			  </div>
 			  <div class="panel-body">
 				  	<div class="form-group">
-					    <a class="btn btn-default" href="demo-chat-launch-button-code.html" role="button">See code for this option</a>
+					    <a class="btn btn-default" href="demo-anchored-button-code.html" role="button">Example 1 Code</a>
 				  	</div>
 				  	<div class="form-group">
-					    <a class="btn btn-default" href="demo-chat-launch-button-2.html" role="button">See button style 2</a>
+					    <a class="btn btn-default" href="demo-anchored-button-2.html" role="button">Example 2</a>
 				    </div>
 			  </div>
 			</div>
@@ -87,8 +87,8 @@
     
     <div>
     	<div aria-live="polite" class="chat-wrapper">
-    		<div style="cursor: pointer;" onclick="alert('&quot;Chat Available&quot; launches the chat modal window');" onmouseover="this.style.cursor='pointer'">
-    			<button type="button" class="chat-btn-bottom chat-btn-main">Chat available</button>
+    		<div style="cursor: pointer;" onclick="alert('&quot;Anchor Button&quot; activated.');" onmouseover="this.style.cursor='pointer'">
+    			<button type="button" class="chat-btn-bottom chat-btn-main">Anchor Button</button>
     		</div>
     	</div>
     </div>

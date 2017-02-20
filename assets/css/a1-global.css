@@ -1,5 +1,6 @@
 /*
-A11y Labs Global CSS File
+* Accessibility Techniques CSS
+* -----------------------------
 */
 
 /*
@@ -27,7 +28,6 @@ A11y Labs Global CSS File
 * Medium yellow: #FFD34E
 * Darker yellow: #DB9E36
 * Rust: #BD4932
-* 
 */
 
 /*
@@ -314,7 +314,7 @@ a.nav-chat {
 		padding-left: 0px;
 	}
 
-/* Chat-Button-Demo
+/* Anchor Button Demo
 ------------------------------------------------------------*/
 
 	.is-hidden {
