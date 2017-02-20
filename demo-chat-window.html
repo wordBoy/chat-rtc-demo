@@ -60,15 +60,63 @@
     		//see chat-demo-modal-window.js to follow where this goes.
         	modalWindow_initialize(configObj);
         	
-        	//add our form elements to an object that the form manager code can use.
-        	configObj = [];
-        	configObj.push({"rootId":"pcs-first-btn","noErrors":true,"errStatement":"Please insert a first name"});
-        	configObj.push({"rootId":"last-name","noErrors":true,"errStatement":"Please insert a last name"});
-        	configObj.push({"rootId":"account-num","noErrors":true,"errStatement":"Please enter your account number"});
-        	
-        	//see chat-demo-form-manager.js to see where this function is called and how it is used
-        	formMgr_initialize(configObj);
+        	$("#chat-win-caller-input").keypress(function(e) {
+        	    if(e.which == 13) {
+        	    	injectCallerMsg();
+        	    }
+        	});
     		
+    	}
+    	
+    	function injectCallerMsg() {
+    		
+    		var msg;
+    		
+    		if (jQuery("#chat-win-caller-input").val() != "") {
+    			msg = jQuery("#chat-win-caller-input").val();
+    		} else {
+    			msg = "This is a message.";
+    		} 
+    			
+    		var line = "<div class=\"chat-win-msg chat-win-caller-msg\"><strong>Frida</strong>: " + msg + "</div>";
+    		jQuery("#chat-log").append(line);
+    		timeCalleeMsg();
+    		setScrollLoc();
+    	}
+    	
+    	var calleeMsgCount = 0;
+    	var timeOutCall;
+    	
+    	function timeCalleeMsg() {
+    		clearTimeout(timeOutCall);
+    		timeOutCall = setTimeout( injectCalleeMsg , 1000);
+    	}
+    	
+    	function injectCalleeMsg() {
+    		var msgs = [];
+    		msgs.push("Sure, let me check that.");
+    		msgs.push("No problem, just give me a moment.");
+    		msgs.push("Of course! Let me review that.");
+    		msgs.push("Your account appears to be in order.");
+    		msgs.push("Your current phone is the latest version offered.");
+    		msgs.push("Let me send that to you.");
+    		msgs.push("Oh look. Chocolate!");
+    		
+    		var len = msgs.length;
+    		
+    		(calleeMsgCount < len-1) ? calleeMsgCount++ : calleeMsgCount = 0; 
+    		var msg = msgs[calleeMsgCount];
+    		
+    		var line = "<div class=\"chat-win-msg chat-win-callee-msg\"><strong>Fred</strong>: " + msg + "</div>";
+    		jQuery("#chat-log").append(line);
+    		
+    		setScrollLoc();
+    		$("#chat-win-caller-input").val("");
+    	}
+    	
+    	function setScrollLoc() {
+    		var sHeight = jQuery("#chat-log").prop('scrollHeight');
+    		jQuery("#chat-log").scrollTop(sHeight);
     	}
     
     </script>
@@ -102,10 +150,10 @@
 		    <!-- Breadcrumb bar -->
 		    <ol class="breadcrumb">
 			  <li><a href="index.html">Home</a></li>
-			  <li class="active">Pre-Chat Survey</li>
+			  <li class="active">Chat Window</li>
 			</ol>
 			
-		    <h1>Demo: Pre-Chat Survey</h1>
+		    <h1>Demo: Chat Window</h1>
 		    
 		    <!-- Demo options -->
 		    <section class="panel-wrapper">
@@ -161,31 +209,25 @@
 	    <div class="chat-modal-wrapper">
 	    	<div class="chat-win-modal-header-wrapper">
 	    		<div class="chat-modal-header-title-wrapper">		    		
-		    		<input readonly="" role="button" class="chat-win-header-item" style="background-image: url('assets/images/icon-close.png');" id="tcChat_btnClose_img" title="Close">
-		    		<input readonly="" role="button" class="chat-win-header-item" style="background-image: url('assets/images/icon-minimize.png');" id="tcChat_btnMinimize_img" title="Minimize">
-		    		<input readonly="" role="button" class="chat-win-header-item" style="background-image: url('assets/images/icon-chime.png');" id="tcChat_btnChime_img" title="Chime">
-		    		<input readonly="" role="button" class="chat-win-header-item" style="background-image: url('assets/images/icon-mail.png');" id="tcChat_btnEmail_img" class="tcChat" title="Email Transcript">
+		    		<button type="button" onclick="modalWindow_hide();" class="chat-win-header-item" id="tcChat_btnClose_img"><span style="inline-block;"><img src="assets/images/icon-close.png" height="30" width="30" alt="Close chat"></span></button>		    		
+		    		<button type="button" onclick="alert('Minimizes chat window');" class="chat-win-header-item" id="tcChat_btnClose_img"><img src="assets/images/icon-minimize.png" height="30" width="30" alt="Minimize chat"></button>		    		
+		    		<button type="button" onclick="alert('Toggles chime');" class="chat-win-header-item" id="tcChat_btnClose_img"><img src="assets/images/icon-chime.png" height="30" width="30" alt="Toggle Chime"></button>		    		
+		    		<button type="button" onclick="alert('User can send transcript');" class="chat-win-header-item" id="tcChat_btnClose_img"><img src="assets/images/icon-mail.png" height="30" width="30" alt="Email transcript"></button>
 		    		<h1 id="chat-win-window-title" class="chat-win-header-title">Chat</h1>
 	    		</div>
 	    	</div>
-	    	<div class="chat-modal-body">
-			    <div role="main">
-				    
-				    <div>content</div>
-				    <div>content</div>
-				    <div>content</div>
-				    <div>content</div>
-				    <div>content</div>
-				    <div>content</div>
-				    <div>content</div>
-				    <div>content</div>
-				    <div>content</div>
-				    <div>content</div>
-				    <div>content</div>
-				    
+	    	<div class="chat-modal-body" role="main">
+			    <div id="chat-log" class="chat-win-log-region">
+				    <div class="chat-win-msg chat-win-callee-msg"><strong>Fred</strong>: Hello - how can I help you today?</div>
+				    <div class="chat-win-msg chat-win-caller-msg"><strong>Frida</strong>: I need help finding a phone I like.</div>
+				    <div class="chat-win-msg chat-win-callee-msg"><strong>Fred</strong>: Excellent! We can definitely help you with that.</div>
+				    <div class="chat-win-msg chat-win-caller-msg"><strong>Frida</strong>: Great - thanks.</div>
 			    </div>
 		    </div>
-			<div class="chat-modal-footer"></div>
+			<div class="chat-win-msg-bar">
+				<input id="chat-win-caller-input" class="chat-win-send-fld" type="text">
+				<button class="chat-win-send-btn" onclick="injectCallerMsg();">Send</button>
+			</div>
 		</div><!-- /modal-window-wrapper -->
 	</div><!-- /pcs-container -->
 		

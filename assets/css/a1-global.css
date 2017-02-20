@@ -533,27 +533,66 @@ a.nav-chat {
 			min-width: 400px;
 			border-radius: 0px;
 		}
+		
+	.chat-win-log-region {
+		overflow-y: auto;
+		max-height: 400px;
+	}
 	
 	.chat-win-header-item {
-		/*position: absolute;*/
-		margin-right: 20px;
+		/*
+		margin-right: 10px;
 		margin-bottom: 12px;
 		width: 30px; 
-		height: 30px; 
+		height: 30px;
+		*/ 
 		border: none;
-		background-color: transparent;
+		background: none;
 		float:right;
 	}
 	
-	.test {
-		border: none; 
-		position: absolute; 
-		left: 0px; 
-		top: 0px;
-		width: 30px; 
-		height: 30px; 
-		background-color: transparent; 
-		cursor: pointer;
+	.chat-win-header-item:first {
+		margin-right: 10px;
+	}
+	
+	.chat-win-msg {
+		border-radius: 4px;
+		margin: 10px;
+		padding: 12px;
+	}
+	
+	.chat-win-callee-msg {
+		color: #fff;
+		background-color: #666666;
+		font-size: 0.9em;
+		margin-right: 90px;
+		max-width: 290px;
+	}
+	
+	.chat-win-caller-msg {
+		background-color: #E6F0F7;
+		font-size: 0.9em;
+		margin-left: 90px;
+		max-width: 290px;
+	}
+	
+	.chat-win-msg-bar {
+		vertical-align: middle;
+		background-color: #F6F6F6;
+		width: 100%;
+		border: 1px solid #CBCBCB;	
+		padding-bottom: 10px;	
+		padding-top: 10px;	
+	}
+	
+	.chat-win-send-btn {
+		margin-right: 10px;
+		margin-left: 10px;
+	}
+	
+	.chat-win-send-fld {
+		margin-left: 10px;
+		min-width: 340px;
 	}
 	
 	.chat-win-modal-header-wrapper {
@@ -581,6 +620,30 @@ a.nav-chat {
 		padding-bottom: 6px;
 		margin-bottom: 12px;
 		
+	}
+	
+
+	@media screen and (max-width: 500px) {
+	   .chat-container-win
+		{
+			min-width: 0px;
+		}
+	
+		.chat-win-callee-msg {
+			margin-right: 30px;
+			max-width: 290px;
+		}
+		
+		.chat-win-caller-msg {
+			margin-left: 30px;
+			max-width: 290px;
+		}
+	
+		.chat-win-send-fld {
+			margin-left: 5px;
+			min-width: 0px;
+			width: 160px;
+		}
 	}
 
 
