@@ -41,13 +41,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand nav-chat" href="index.html">Chat :: Primer</a>
+          <a class="navbar-brand nav-demo" href="index.html">A11y :: Demos</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a class="nav-chat" href="index.html">Home</a></li>
-            <li class="active"><a class="nav-chat" href="demos.html"><span class="glyphicon glyphicon-star glyph-menu" aria-hidden="true"></span>Demos</a></li>
-            <li><a class="nav-chat" href="topics.html">Topics</a></li>
+            <li><a class="nav-demo" href="index.html">Home</a></li>
+            <li class="active"><a class="nav-demo" href="demos.html"><span class="glyphicon glyphicon-star glyph-menu" aria-hidden="true"></span>Demos</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -58,20 +57,20 @@
 	    <!-- Breadcrumb bar -->
 	    <ol class="breadcrumb">
 		  <li><a href="index.html">Home</a></li>
-		  <li><a href="demo-chat-launch-button.html">Chat Launch Button Style 1</a></li>
-		  <li class="active">Chat Launch Style 1 Code</li>
+		  <li><a href="demo-anchored-button.html">Anchor Button 1</a></li>
+		  <li class="active">Anchor Button 1 Code</li>
 		</ol>
 		
-    	<h1>Chat Launch Button Style 1 Markup</h1>
+    	<h1>Anchor Button 1 Code</h1>
     	
     	<h3>HTML Markup</h3>
 	    <code>
 	    	<pre>
 &lt;div&gt;
-   &lt;div aria-live=&quot;polite&quot; class=&quot;chat-wrapper&quot;&gt;
+   &lt;div aria-live=&quot;polite&quot; class=&quot;anchor-button-wrapper&quot;&gt;
 	&lt;div style=&quot;cursor: pointer;&quot; onclick=&quot;&hellip;&quot; 
 	onmouseover=&quot;this.style.cursor='pointer'&quot;&gt;
-		&lt;button type=&quot;button&quot; class=&quot;chat-btn-bottom chat-btn-main&quot;&gt;
+		&lt;button type=&quot;button&quot; class=&quot;anchor-btn-bottom anchor-btn-main&quot;&gt;
 			Anchor Button
 		&lt;/button&gt;
 	&lt;/div&gt;
@@ -83,7 +82,7 @@
 	    <h3>CSS Markup</h3>
 	    <code>
 	    	<pre>
-<strong>.chat-wrapper</strong>
+<strong>.anchor-button-wrapper</strong>
 {
 	position: fixed; 
 	right: 20px; 
@@ -92,7 +91,7 @@
 	font-size: 16px;
 }
 
-<strong>.chat-btn-bottom</strong> 
+<strong>.anchor-btn-bottom</strong> 
 {
 	padding: 10px 20px;
 	font-size: 1.1875em;
@@ -104,11 +103,11 @@
 	min-width: 181px;
 }
 
-<strong>.chat-btn-main</strong>
+<strong>.anchor-btn-main</strong>
 {
 	cursor: pointer;
 	color: #fff;
-	font-family: Omnes_ATTW02Medium, arial, sans-serif !important;
+	font-family: arial, sans-serif !important;
 	background-position: center 48%;
 	background-repeat: no-repeat;
 	background: #0574ac;
@@ -116,18 +115,7 @@
 	    	</pre>
 	    </code>
 	    
-	    
-	    
-	    
     </div><!-- /.container -->
-    
-    <div>
-    	<div aria-live="polite" style="position: fixed; right: 20px; z-index: 9999999; bottom: 0px; font-size: 16px;">
-    		<div style="cursor: pointer;" onclick="alert('&quot;Chat Available&quot; launches the chat modal window');" onmouseover="this.style.cursor='pointer'">
-    			<button type="button" class="chat-btn-bottom chat-btn-main">Chat available</button>
-    		</div>
-    	</div>
-    </div>
     
 
 

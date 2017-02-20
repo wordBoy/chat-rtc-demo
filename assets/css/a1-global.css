@@ -159,7 +159,7 @@ Puts more room between links for easier mobile access
 
 /* 5 - Nav-bar
 ----------------*/
-a.nav-chat {
+a.nav-demo {
 	text-decoration: none;
 }
 
@@ -321,7 +321,7 @@ a.nav-chat {
 		display: none;
 	}
 	
-	.chat-wrapper
+	.anchor-button-wrapper
 	{
 		position: fixed; 
 		right: 20px; 
@@ -335,7 +335,7 @@ a.nav-chat {
 		/*max-width: 500px;*/
 	}
 	
-	.chat-btn-bottom 
+	.anchor-btn-bottom 
 	{
 		padding: 10px 20px;
 		font-size: 125%;
@@ -347,17 +347,17 @@ a.nav-chat {
 		min-width: 181px;
 	}
 	
-	.chat-btn-main
+	.anchor-btn-main
 	{
 		cursor: pointer;
 		color: #fff;
-		font-family: Omnes_ATTW02Medium, arial, sans-serif !important;
+		font-family: arial, sans-serif !important;
 		background-position: center 48%;
 		background-repeat: no-repeat;
 		background-color: #0574ac;
 	}
 	
-	.chat-wrapper-2
+	.anchor-button-wrapper-2
 	{
 		width: 100%; 
 		position: fixed; 
@@ -367,7 +367,7 @@ a.nav-chat {
 		font-size: 16px;
 	}
 	
-	.chat-btn-bottom-2
+	.anchor-btn-bottom-2
 	{
 		font-size: 1.1875em;
 		border: 0px;
@@ -377,11 +377,11 @@ a.nav-chat {
 		padding-right: 0px;
 	}
 	
-	.chat-btn-main-2
+	.anchor-btn-main-2
 	{
 		cursor: pointer;
 		color: #fff;
-		font-family: Omnes_ATTW02Medium, arial, sans-serif !important;
+		font-family: arial, sans-serif !important;
 		background-position: center 48%;
 		background-repeat: no-repeat;
 		background: #444444;
