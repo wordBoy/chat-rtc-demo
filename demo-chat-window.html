@@ -50,11 +50,11 @@
     		
     		//establish the custom window values for this demo
     		var configObj = {};
-        	configObj.rootPanelObjJQ = jQuery("#pcs-container");
-        	configObj.firstFocusItemJQ = jQuery("#pcs-first-btn");
-        	configObj.closeButtonIdStr = "#chat-modal-header-close-btn";
-        	configObj.headerPtrStr = "pcs-subhead-1";
-        	configObj.modalCloseFunctions = [clearErrStatements];
+        	configObj.rootPanelObjJQ = jQuery("#chat-win-container");
+        	configObj.firstFocusItemJQ = jQuery("#chat-win-caller-input");
+        	configObj.closeButtonIdStr = "#chat-win-close-btn";
+        	configObj.headerPtrStr = "chat-win-window-title";
+        	configObj.modalCloseFunctions = [];
         	
         	//pass our config object over to the window code
     		//see chat-demo-modal-window.js to follow where this goes.
@@ -65,7 +65,19 @@
         	    	injectCallerMsg();
         	    }
         	});
+
+        	chatLog_clear();
     		
+    	}
+    	
+    	function chatLog_clear() {
+    		jQuery("#hidden-chat-log").empty();
+    	}
+    	
+    	function chatLog_insert(msg) {
+    		chatLog_clear();
+    		jQuery("#hidden-chat-log").text(msg);
+    		//jQuery("#hidden-chat-log").html(msg);
     	}
     	
     	function injectCallerMsg() {
@@ -77,7 +89,9 @@
     		} else {
     			msg = "This is a message.";
     		} 
-    			
+    		
+    		chatLog_insert(msg);
+    		
     		var line = "<div class=\"chat-win-msg chat-win-caller-msg\"><strong>Frida</strong>: " + msg + "</div>";
     		jQuery("#chat-log").append(line);
     		timeCalleeMsg();
@@ -106,6 +120,8 @@
     		
     		(calleeMsgCount < len-1) ? calleeMsgCount++ : calleeMsgCount = 0; 
     		var msg = msgs[calleeMsgCount];
+
+    		chatLog_insert(msg);
     		
     		var line = "<div class=\"chat-win-msg chat-win-callee-msg\"><strong>Fred</strong>: " + msg + "</div>";
     		jQuery("#chat-log").append(line);
@@ -177,25 +193,9 @@
 	    </div><!-- /.container -->
     </div><!-- /#mainPage  -->
     
-	<!-- 
-	ARIA-speak control
-	<div style="border: 0px none; 
-		clip: rect(0px, 0px, 0px, 0px); 
-		height: 1px; 
-		margin: -1px; 
-		overflow: hidden; 
-		padding: 0px; 
-		position: absolute; 
-		width: 1px;" 
-		aria-relevant="additions" 
-		aria-live="polite" 
-		role="log" 
-		id="tc-acif-aria-speaker">
-			<div aria-hidden="true" style="display: none;">
-			        Thank you for choosing AT&amp;T Chat. To get started, please answer a few questions.
-			</div>
+	<div id="hidden-chat-log" aria-live="polite">
+		Thank you for choosing AT&amp;T Chat. To get started, please answer a few questions.
 	</div>
-	-->
     
     <div id="chat-launch-wrapper">
     	<div aria-live="polite" class="chat-wrapper">
@@ -205,27 +205,24 @@
     	</div>
     </div>
     
-    <div id="pcs-container" class="chat-container chat-container-win is-hidden" aria-hidden="true">
+    <div id="chat-win-container" class="chat-container chat-container-win is-hidden" aria-hidden="true">
 	    <div class="chat-modal-wrapper">
 	    	<div class="chat-win-modal-header-wrapper">
 	    		<div class="chat-modal-header-title-wrapper">		    		
-		    		<button type="button" onclick="modalWindow_hide();" class="chat-win-header-item" id="tcChat_btnClose_img"><span style="inline-block;"><img src="assets/images/icon-close.png" height="30" width="30" alt="Close chat"></span></button>		    		
-		    		<button type="button" onclick="alert('Minimizes chat window');" class="chat-win-header-item" id="tcChat_btnClose_img"><img src="assets/images/icon-minimize.png" height="30" width="30" alt="Minimize chat"></button>		    		
-		    		<button type="button" onclick="alert('Toggles chime');" class="chat-win-header-item" id="tcChat_btnClose_img"><img src="assets/images/icon-chime.png" height="30" width="30" alt="Toggle Chime"></button>		    		
-		    		<button type="button" onclick="alert('User can send transcript');" class="chat-win-header-item" id="tcChat_btnClose_img"><img src="assets/images/icon-mail.png" height="30" width="30" alt="Email transcript"></button>
-		    		<h1 id="chat-win-window-title" class="chat-win-header-title">Chat</h1>
+		    		<button type="button" onclick="modalWindow_hide();" class="chat-win-header-item" id="chat-win-close-btn"><span style="inline-block;"><img src="assets/images/icon-close.png" height="30" width="30" alt="Close chat"></span></button>		    		
+		    		<button type="button" onclick="alert('Minimizes chat window');" class="chat-win-header-item" id="chat-win-minimize"><img src="assets/images/icon-minimize.png" height="30" width="30" alt="Minimize chat"></button>		    		
+		    		<button type="button" onclick="alert('Toggles chime');" class="chat-win-header-item" id="chat-win-chime"><img src="assets/images/icon-chime.png" height="30" width="30" alt="Toggle Chime"></button>		    		
+		    		<button type="button" onclick="alert('User can send transcript');" class="chat-win-header-item" id="chat-win-transcript"><img src="assets/images/icon-mail.png" height="30" width="30" alt="Email transcript"></button>
+		    		<h1 id="chat-win-window-title" class="chat-win-header-title">Chat Demo</h1>
 	    		</div>
 	    	</div>
 	    	<div class="chat-modal-body" role="main">
 			    <div id="chat-log" class="chat-win-log-region">
 				    <div class="chat-win-msg chat-win-callee-msg"><strong>Fred</strong>: Hello - how can I help you today?</div>
-				    <div class="chat-win-msg chat-win-caller-msg"><strong>Frida</strong>: I need help finding a phone I like.</div>
-				    <div class="chat-win-msg chat-win-callee-msg"><strong>Fred</strong>: Excellent! We can definitely help you with that.</div>
-				    <div class="chat-win-msg chat-win-caller-msg"><strong>Frida</strong>: Great - thanks.</div>
 			    </div>
 		    </div>
 			<div class="chat-win-msg-bar">
-				<input id="chat-win-caller-input" class="chat-win-send-fld" type="text">
+				<input id="chat-win-caller-input" title="Chat Message Input" class="chat-win-send-fld" type="text">
 				<button class="chat-win-send-btn" onclick="injectCallerMsg();">Send</button>
 			</div>
 		</div><!-- /modal-window-wrapper -->
