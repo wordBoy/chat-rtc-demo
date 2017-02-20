@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Chat Demos | AT&amp;T Chat Primer</title>
+    <title>Modal Windows + ARIA | Accessibility Technique Examples</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -30,14 +30,6 @@
     <![endif]-->
     
     <script>
-    
-    	/**
-    	* PLEASE NOTE!
-    	* ------------
-    	* Since this code is integrated a fair amount with the Incredible Accessible Modal Window
-    	* code. Note that I use "IAMW" to reference that code set. Also, please see the git hub 
-    	* codebase to know and understand the latest version: http://gdkraus.github.io/accessible-modal-dialog/    	*
-    	*/
     	
     	var winConfig = {};
     	
@@ -88,37 +80,38 @@
 	        <div id="navbar" class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
 	            <li><a class="nav-demo" href="index.html">Home</a></li>
-	            <li class="active"><a class="nav-demo" href="demos.html"><span class="glyphicon glyphicon-star glyph-menu" aria-hidden="true"></span>Demos</a></li>
+	            
 	            
 	          </ul>
 	        </div><!--/.nav-collapse -->
 	      </div>
 	    </nav>
 	
-	    <div class="container">
-		    <!-- Breadcrumb bar -->
-		    <ol class="breadcrumb">
-			  <li><a href="index.html">Home</a></li>
-			  <li class="active">Agent Chooser</li>
-			</ol>
-			
-		    <h1>Demo: Agent Chooser</h1>
+	    <div class="container">			
+		    <h1>Modal Windows + ARIA binding</h1>
 		    
 		    <!-- Demo options -->
 		    <section class="panel-wrapper">
 			    <div class="panel panel-default">
 				  <div class="panel-heading">
-				    <h2 class="panel-title">Get Started with this Demo</h2>
+				    <h2 class="panel-title">Demo Notes</h2>
 				  </div>
 				  <div class="panel-body">
-				  		<p>Each get started option below is also a link so you can read more about what is happening.</p>
+				  		<p>There's a lot going on here. Be sure to follow links to view key source code. Also, note that this code uses the <a href="https://github.com/gdkraus/accessible-modal-dialog">Incredible Accessible Modal Windows project</a> (IAMW) extensively. We modify and wrap IAMW, so there's a fair amount to explore. And of course, if you are just looking for the IAMW code, follow the link just provided to get the original code.</p>
+				  		
+				  		<h3>Recommended Steps to Explore</h3>
 				  		<ol>
-					  		<li>Operate the Chat Launch Button, the last tabbable element on the page.</li>
+					  		<li>Operate the anchor button, the last tabbable element on the page.</li>
 					  		<li>Explore the modal window that comes up and note how keyboard control behaves.</li>
 					  		<li>With a screen reader on, note how the title of the modal window is introduced.</li>
 					  		<li>Resize the windown with the modal open and note how it behaves.</li>
-					  		<li>Change the font size with the modal open and note how it behaves...or doesn't!</li>
+					  		<li>Change the font size with the modal open and note how it behaves.</li>
 				  		</ol>
+				  		<h3>Source Code Links</h3>
+				  		<ul>
+					  		<li><a href="assets/js/modal-window.js">modal-window.js</a>: This is the IAMW code, but modified for our demo.</li>
+					  		<li><a href="assets/js/chat-demo-modal-window.js">chat-demo-modal-window.js</a>: Our modal window wrapper code.</li>
+				  		</ul>
 				  </div>
 				</div>
 			</section>
@@ -131,7 +124,7 @@
     <div id="chat-launch-wrapper">
     	<div aria-live="polite" class="anchor-button-wrapper">
     		<div style="cursor: pointer;" onclick="modalWindow_show();" onmouseover="this.style.cursor='pointer'">
-    			<button type="button" type="button" class="anchor-btn-bottom anchor-btn-main">Chat available</button>
+    			<button type="button" type="button" class="anchor-btn-bottom anchor-btn-main">Open the Modal Window</button>
     		</div>
     	</div>
     </div>
@@ -141,23 +134,22 @@
 	    	<div class="chat-modal-header-wrapper">
 	    		<div class="chat-modal-header-title-wrapper">
 		    		<button id="chat-modal-header-close-btn" onclick="modalWindow_hide();" type="button" title="Close Chat"><img src="assets/images/close.png" height="13" width="12" alt=""></button>
-		    		<h1 id="ac-window-title" class="chat-modal-header-title">Chat with AT&amp;T</h1>
+		    		<h1 id="ac-window-title" class="chat-modal-header-title">Chat Modal Demo</h1>
 	    		</div>
 	    	</div>
 	    	<div class="chat-modal-body">
 			    <div role="main">
 				 	<div>
-				        <h2 id="ac-subhead-1" class="ac-sub-titles">Thank you for choosing AT&amp;T Chat. <br/>
-				        To get started, please answer a few questions.</h2>
-				        <h2 id="ac-subhead-2" class="ac-sub-titles">Which AT&amp;T product or service<br/>would you like help with?</h2>
+				        <h2 id="ac-subhead-1" class="ac-sub-titles">Part 1 of the sub-header, read off when the<br/> modal appears.</h2>
+				        <h2 id="ac-subhead-2" class="ac-sub-titles">Part 2 of the sub-header, this is also read <br/> by screen readers.</h2>
 				    </div>
 				    
 				    <ul class="ac-body-link-list">
-				            <li><button type="button" id="ac-first-btn" class="acListItemBtn">Wireless</button></li>
-				            <li><button type="button" class="acListItemBtn">Digital TV</button></li>
-				            <li><button type="button" class="acListItemBtn">Internet</button></li>
-				            <li><button type="button" class="acListItemBtn">Home Phone</button></li>
-				            <li><button type="button" class="acListItemBtn">Home Security</button></li>
+				            <li><button type="button" id="ac-first-btn" class="acListItemBtn">Option 1</button></li>
+				            <li><button type="button" class="acListItemBtn">Option 2</button></li>
+				            <li><button type="button" class="acListItemBtn">Option 3</button></li>
+				            <li><button type="button" class="acListItemBtn">Option 4</button></li>
+				            <li><button type="button" class="acListItemBtn">Option 5</button></li>
 				    </ul>
 			    </div>
 		    </div>
@@ -172,7 +164,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  -->
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="assets/js/modal-window.js"></script>

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Chat Demos | AT&amp;T Chat Primer</title>
+    <title>Modals + Live Regions | Accessibility Technique Examples</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -50,25 +50,89 @@
     		
     		//establish the custom window values for this demo
     		var configObj = {};
-        	configObj.rootPanelObjJQ = jQuery("#pcs-container");
-        	configObj.firstFocusItemJQ = jQuery("#pcs-first-btn");
-        	configObj.closeButtonIdStr = "#chat-modal-header-close-btn";
-        	configObj.headerPtrStr = "pcs-subhead-1";
-        	configObj.modalCloseFunctions = [clearErrStatements];
+        	configObj.rootPanelObjJQ = jQuery("#chat-win-container");
+        	configObj.firstFocusItemJQ = jQuery("#chat-win-caller-input");
+        	configObj.closeButtonIdStr = "#chat-win-close-btn";
+        	configObj.headerPtrStr = "chat-win-window-title";
+        	configObj.modalCloseFunctions = [];
         	
         	//pass our config object over to the window code
     		//see chat-demo-modal-window.js to follow where this goes.
         	modalWindow_initialize(configObj);
         	
-        	//add our form elements to an object that the form manager code can use.
-        	configObj = [];
-        	configObj.push({"rootId":"pcs-first-btn","noErrors":true,"errStatement":"Please insert a first name"});
-        	configObj.push({"rootId":"last-name","noErrors":true,"errStatement":"Please insert a last name"});
-        	configObj.push({"rootId":"account-num","noErrors":true,"errStatement":"Please enter your account number"});
-        	
-        	//see chat-demo-form-manager.js to see where this function is called and how it is used
-        	formMgr_initialize(configObj);
+        	$("#chat-win-caller-input").keypress(function(e) {
+        	    if(e.which == 13) {
+        	    	injectCallerMsg();
+        	    }
+        	});
+
+        	chatLog_clear();
     		
+    	}
+    	
+    	function chatLog_clear() {
+    		jQuery("#hidden-chat-log").empty();
+    	}
+    	
+    	function chatLog_insert(msg) {
+    		chatLog_clear();
+    		jQuery("#hidden-chat-log").text(msg);
+    		//jQuery("#hidden-chat-log").html(msg);
+    	}
+    	
+    	function injectCallerMsg() {
+    		
+    		var msg;
+    		
+    		if (jQuery("#chat-win-caller-input").val() != "") {
+    			msg = jQuery("#chat-win-caller-input").val();
+    		} else {
+    			msg = "This is a message.";
+    		} 
+    		
+    		chatLog_insert(msg);
+    		
+    		var line = "<div class=\"chat-win-msg chat-win-caller-msg\"><strong>Frida</strong>: " + msg + "</div>";
+    		jQuery("#chat-log").append(line);
+    		timeCalleeMsg();
+    		setScrollLoc();
+    	}
+    	
+    	var calleeMsgCount = 0;
+    	var timeOutCall;
+    	
+    	function timeCalleeMsg() {
+    		clearTimeout(timeOutCall);
+    		timeOutCall = setTimeout( injectCalleeMsg , 1000);
+    	}
+    	
+    	function injectCalleeMsg() {
+    		var msgs = [];
+    		msgs.push("Sure, let me check that.");
+    		msgs.push("No problem, just give me a moment.");
+    		msgs.push("Of course! Let me review that.");
+    		msgs.push("Your account appears to be in order.");
+    		msgs.push("Your current phone is the latest version offered.");
+    		msgs.push("Let me send that to you.");
+    		msgs.push("Oh look. Chocolate!");
+    		
+    		var len = msgs.length;
+    		
+    		(calleeMsgCount < len-1) ? calleeMsgCount++ : calleeMsgCount = 0; 
+    		var msg = msgs[calleeMsgCount];
+
+    		chatLog_insert(msg);
+    		
+    		var line = "<div class=\"chat-win-msg chat-win-callee-msg\"><strong>Fred</strong>: " + msg + "</div>";
+    		jQuery("#chat-log").append(line);
+    		
+    		setScrollLoc();
+    		$("#chat-win-caller-input").val("");
+    	}
+    	
+    	function setScrollLoc() {
+    		var sHeight = jQuery("#chat-log").prop('scrollHeight');
+    		jQuery("#chat-log").scrollTop(sHeight);
     	}
     
     </script>
@@ -91,7 +155,7 @@
 	        <div id="navbar" class="collapse navbar-collapse">
 	          <ul class="nav navbar-nav">
 	            <li><a class="nav-demo" href="index.html">Home</a></li>
-	            <li class="active"><a class="nav-demo" href="demos.html"><span class="glyphicon glyphicon-star glyph-menu" aria-hidden="true"></span>Demos</a></li>
+	            
 	            
 	          </ul>
 	        </div><!--/.nav-collapse -->
@@ -102,25 +166,27 @@
 		    <!-- Breadcrumb bar -->
 		    <ol class="breadcrumb">
 			  <li><a href="index.html">Home</a></li>
-			  <li class="active">Pre-Chat Survey</li>
+			  <li class="active">Chat Window</li>
 			</ol>
 			
-		    <h1>Demo: Pre-Chat Survey</h1>
+		    <h1>Modals + Live Regions</h1>
 		    
 		    <!-- Demo options -->
 		    <section class="panel-wrapper">
 			    <div class="panel panel-default">
 				  <div class="panel-heading">
-				    <h2 class="panel-title">Get Started with this Demo</h2>
+				    <h2 class="panel-title">Demo Notes</h2>
 				  </div>
 				  <div class="panel-body">
-				  		<p>Each get started option below is also a link so you can read more about what is happening.</p>
+				  		<p>This demo includes a chat simulation the demos one approach to ARIA live regions.</p>
+				  		
+				  		
+				  		<h3>Recommended Steps to Explore</h3>
 				  		<ol>
-					  		<li>Operate the Chat Launch Button, the last tabbable element on the page.</li>
-					  		<li>Explore the modal window that comes up and note how keyboard control behaves.</li>
-					  		<li>With a screen reader on, note how the title of the modal window is introduced.</li>
-					  		<li>Resize the windown with the modal open and note how it behaves.</li>
-					  		<li>Change the font size with the modal open and note how it behaves...or doesn't!</li>
+					  		<li>Explore the code of this page, searching on the &quot;hidden-chat-log&quot; id to see the live region update technique.</li>
+					  		<li>Open the modal window.</li>
+					  		<li>Operate the send button a few times to simulate a chat session. Be sure to do this with a screen reader on. You should hear the chat log updates.</li>
+				
 				  		</ol>
 				  </div>
 				</div>
@@ -129,69 +195,35 @@
 	    </div><!-- /.container -->
     </div><!-- /#mainPage  -->
     
-	<!-- 
-	ARIA-speak control
-	<div style="border: 0px none; 
-		clip: rect(0px, 0px, 0px, 0px); 
-		height: 1px; 
-		margin: -1px; 
-		overflow: hidden; 
-		padding: 0px; 
-		position: absolute; 
-		width: 1px;" 
-		aria-relevant="additions" 
-		aria-live="polite" 
-		role="log" 
-		id="tc-acif-aria-speaker">
-			<div aria-hidden="true" style="display: none;">
-			        Thank you for choosing AT&amp;T Chat. To get started, please answer a few questions.
-			</div>
+	<div id="hidden-chat-log" class="hidden-spoken" aria-live="polite">
+		
 	</div>
-	-->
     
     <div id="chat-launch-wrapper">
     	<div aria-live="polite" class="anchor-button-wrapper">
     		<div style="cursor: pointer;" onclick="modalWindow_show();" onmouseover="this.style.cursor='pointer'">
-    			<button type="button" type="button" class="anchor-btn-bottom anchor-btn-main">Chat available</button>
+    			<button type="button" type="button" class="anchor-btn-bottom anchor-btn-main">Open the Modal Window</button>
     		</div>
     	</div>
     </div>
     
-    <div id="pcs-container" class="chat-container chat-container-pcs is-hidden" aria-hidden="true">
+    <div id="chat-win-container" class="chat-container chat-container-win is-hidden" aria-hidden="true">
 	    <div class="chat-modal-wrapper">
-	    	<div class="chat-modal-header-wrapper">
-	    		<div class="chat-modal-header-title-wrapper">
-		    		<button id="chat-modal-header-close-btn" onclick="modalWindow_hide();" type="button" title="Close Chat"><img src="assets/images/close.png" height="13" width="12" alt=""></button>
-		    		<h1 id="ac-window-title" class="chat-modal-header-title">Chat with AT&amp;T</h1>
+	    	<div class="chat-win-modal-header-wrapper">
+	    		<div class="chat-modal-header-title-wrapper">		    		
+		    		<button type="button" onclick="modalWindow_hide();" class="chat-win-header-item" id="chat-win-close-btn"><span style="inline-block;"><img src="assets/images/icon-close.png" height="30" width="30" alt="Close chat"></span></button>		    		
+		    		<h1 id="chat-win-window-title" class="chat-win-header-title">Chat Demo</h1>
 	    		</div>
 	    	</div>
-	    	<div class="chat-modal-body">
-			    <div role="main">
-				 	<div class="chat-pcs-sub-header">
-				        <h2 id="pcs-subhead-1" class="ac-sub-titles">All fields required.</h2>
-				    </div>
-				    
-				    <form novalidate>
-				    	<div class="form-group chat-pcs-form-wrapper">
-				    		<label id="label-pcs-first-btn" for="pcs-first-btn">First Name</label>
-				    		<input id="pcs-first-btn" type="text" placeholder=" first name here" required aria-required="true">
-				    	</div>
-				    	<div class="form-group chat-pcs-form-wrapper">
-				    		<label id="label-last-name" for="last-name">Last Name</label>
-				    		<input id="last-name" type="text" placeholder=" last name here" required aria-required="true">
-				    	</div>
-				    	<div class="form-group chat-pcs-form-wrapper">
-				    		<label id="label-account-num" for="account-num">Account Number</label>
-				    		<input id="account-num" type="text" placeholder=" account number here" required aria-required="true">
-				    	</div>
-				    	<div class="form-group chat-pcs-submit-group">
-							<button id="close-chat-pcs" class="btn btn-default" type="button" onclick="modalWindow_hide();">Cancel</button>
-							<button id="submit-pcs" class="pcs-submit" type="button" onclick="validatePCS();">Submit</button>
-				    	</div>
-				    </form>
+	    	<div class="chat-modal-body" role="main">
+			    <div id="chat-log" class="chat-win-log-region">
+				    <div class="chat-win-msg chat-win-callee-msg"><strong>Fred</strong>: Hello - how can I help you today?</div>
 			    </div>
 		    </div>
-			<div class="chat-modal-footer"></div>
+			<div class="chat-win-msg-bar">
+				<input id="chat-win-caller-input" title="Chat Message Input" class="chat-win-send-fld" type="text">
+				<button class="chat-win-send-btn" onclick="injectCallerMsg();">Send</button>
+			</div>
 		</div><!-- /modal-window-wrapper -->
 	</div><!-- /pcs-container -->
 		
@@ -203,7 +235,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  -->
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
     <script src="assets/js/modal-window.js"></script>

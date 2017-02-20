@@ -1,3 +1,11 @@
+    
+/**
+* PLEASE NOTE!
+* ------------
+* Since this code is integrated a fair amount with the Incredible Accessible Modal Window
+* code. Note that I use "IAMW" to reference that code set. Also, please see the git hub 
+* codebase to know and understand the latest version: http://gdkraus.github.io/accessible-modal-dialog/    	*
+*/
 
 var winConfig = {};
 
