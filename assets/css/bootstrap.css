@@ -4,6 +4,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+/*
+* Accessibility tweaks completed for the CSUN 17 Interactive Chat Demo
+* See text 'chat-demo-a11y-fix' below for places we've tweaked this file.
+*/
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -135,6 +139,8 @@ button[disabled],
 html input[disabled] {
   cursor: default;
 }
+
+/*chat-demo-a11y-fix*/
 /*
 button::-moz-focus-inner,
 input::-moz-focus-inner {
@@ -2584,7 +2590,8 @@ output {
 }
 .form-control::-ms-expand {
   background-color: transparent;
-  border: 0;
+  /*chat-demo-a11y-fix*/
+  /*border: 0;*/
 }
 .form-control[disabled],
 .form-control[readonly],
@@ -4337,7 +4344,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     width: auto;
     margin-top: 0;
     background-color: transparent;
-    border: 0;
+    /*chat-demo-a11y-fix*/
+    /*border: 0;*/
     -webkit-box-shadow: none;
             box-shadow: none;
   }
@@ -4442,7 +4450,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     padding-bottom: 0;
     margin-right: 0;
     margin-left: 0;
-    border: 0;
+    /*chat-demo-a11y-fix*/
+    /*border: 0;*/
     -webkit-box-shadow: none;
             box-shadow: none;
   }
@@ -5863,7 +5872,8 @@ button.close {
   padding: 0;
   cursor: pointer;
   background: transparent;
-  border: 0;
+  /*chat-demo-a11y-fix*/
+  /*border: 0;*/
 }
 .modal-open {
   overflow: hidden;

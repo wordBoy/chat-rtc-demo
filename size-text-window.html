@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Text Size Test | AT&T Chat Primer</title>
+    <title>Text Size Test | Accessible Chat Demos</title>
 
 	<style>
 		
@@ -30,6 +30,13 @@
 			-webkit-text-size-adjust: 60%; 
 			font-size: 100%;
 		}
+		.font-scale-4 {
+			font-size: 100%;
+			-webkit-text-size-adjust: 200%; 
+		}
+		.font-scale-5 {
+			-webkit-text-size-adjust: 200%; 
+		}
 		
 		.scaling-button {
 			width: auto;
@@ -48,6 +55,10 @@
   <p class="font-scale-2"><strong>Scale-2: 80%, font-size:100%</strong> Text.</p>
   <p class="font-scale-3"><strong>Scale-3: 60%, font-size:100%</strong> This is some content set in a very simple web page with no styling.</p>
   <p class="font-scale-3"><strong>Scale-3: 60%, font-size:100%</strong> Text.</p>
+  <p class="font-scale-4"><strong>Scale-4: 200%, font-size:100%</strong> This is some content set in a very simple web page with no styling.</p>
+  <p class="font-scale-4"><strong>Scale-4: 200%, font-size:100%</strong> Text.</p>
+  <p class="font-scale-5"><strong>Scale-5: 200%</strong> This is some content set in a very simple web page with no styling.</p>
+  <p class="font-scale-5"><strong>Scale-5: 200%</strong> Text.</p>
   
   <div>
 	  <h2>Text size test 2</h2>
@@ -78,29 +89,11 @@
 	  <div>
 		  <h2>Text size test</h2>
 		  <button class="scaling-button">Text button</button><br/>
-		  <input  class="scaling-button" style="font-size:inherit;" type="button" value="Input button"><br/>
+		  <input  class="scaling-button" type="button" value="Input button"><br/>
 		  <a style="font-size:inherit;" href="#">Text link</a>
 	  </div>
   </section>
-  
-  <h2>What Have We Learned Today?</h2>
-  <h3>Android Chrome OS on Android 7.x</h3>
-  <ul>
-  	<li>The CSS property <code>-webkit-text-size-adjust</code>, Android Chrome browser 7.x, ignores values greater than 100%.</li>
-  	<li>Small amounts of text simply don't scale.</li>
-  </ul>
-  <h3>Bootstrap v3</h3>
-  <ul>
-  	<li>Bootstrap creates many problems with outline focus because they want a beautiful interface. Rip all of that out. Like this:
-  	<pre>
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-padding: 0;
-border: 0;
-}
-  	</pre>
-  	</li>
-  </ul>
+
 
   </body>
 </html>

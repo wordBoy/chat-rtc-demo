@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Chat Demos | AT&T Chat Primer</title>
+    <title>Demo Development Notes | Accessible Chat Demos</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -41,76 +41,46 @@
     </nav>
 
     <div class="container">
+	    <h1>Demo Development Notes</h1>
+	    <p>Demos are a lot of fun to create, and I always learn at least a baker's dozen new things. As a result, here's some notes that you may find useful.</p>
 	    
-	    <!-- Breadcrumb bar -->
-	    <ol class="breadcrumb">
-		  <li><a href="index.html">Home</a></li>
-		  <li><a href="demo-anchored-button.html">Anchor Button 1</a></li>
-		  <li><a href="demo-anchored-button-2.html">Anchor Button 2</a></li>
-		  <li class="active">Anchor Button 2 Code</li>
+	    <h2>Bootstrap Version 3</h2>
+	    <p>We use a modified version of Bootstrap - <a href="http://getbootstrap.com/">the getBootstrap.com version</a> - for our demo.</p>
+	    <p>We use the basic framework, but so far have avoided a lot of the components because we haven't vetted them for accessibility.</p>
+	    
+	    <h3>Notes on Making Bootstrap More Accessible</h3>
+	    <p>Note we did not say it's accessible...not ready to say that yet.</p>
+	    <p>The coders have really taken out the focus rect - we put it back in everywhere we could find. In our <a href="assets/css/bootstrap.css">bootstrap.css for this demo</a>, see the <code>/*chat-demo-a11y-fix*/</code> text to see where we've twiddled with something. For example, this seems to be why button focus rects do not appear in Firefox:
+<pre>button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}</pre>
+
+		<h2>Android Chrome browser 7.x font scaling</h2>
+		<p>Spent some time noodling on font scaling. I created a <a href="size-text-window.html">text size test page</a>.</p>
+		<p>Get to this feature by:</p>
+		<ol>
+			<li>Open Chrome browser</li>
+			<li>Go to the Options widget and choose Settings</li>
+			<li>In settings, choose Accessibility</li>
+			<li>The "Text scaling" is one of two available options for me.</li>
 		</ol>
-		
-    	<h1>Anchor Button 2 Code</h1>
-    	
-    	<h3>HTML Markup</h3>
-	    <code>
-	    	<pre>
-&lt;div&gt;
-   &lt;div aria-live=&quot;polite&quot; class=&quot;anchor-button-wrapper&quot;&gt;
-	&lt;div style=&quot;cursor: pointer;&quot; onclick=&quot;&hellip;&quot; 
-	onmouseover=&quot;this.style.cursor='pointer'&quot;&gt;
-		&lt;button type=&quot;button&quot; class=&quot;anchor-btn-bottom anchor-btn-main&quot;&gt;
-			Anchor Button
-		&lt;/button&gt;
-	&lt;/div&gt;
-   &lt;/div&gt;
-&lt;/div&gt;
-	    	</pre>
-	    </code>
+		<p>I've encountered plenty of odd behavior with this feature. In particular:</p>
+		<ol>
+			<li>Small amounts of text on a page simply will not scale.</li>
+			<li>The CSS property <code>-webkit-text-size-adjust</code> will not scale past 100%.</li>
+		</ol>
+		<p>Resources I hit when researching:</p>
+		<ul>
+			<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-size-adjust">Mozilla text-size-adjust info</a></li>
+			<li><a href="http://caniuse.com/#feat=text-size-adjust">Can I Use for text-size-adjust</a></li>
+		</ul>
 	    
-	    <h3>CSS Markup</h3>
-	    <code>
-	    	<pre>
+	    
+	
 
-<strong>.anchor-button-wrapper-2</strong>
-{
-	width: 100%; 
-	position: fixed; 
-	right: 0px; 
-	z-index: 9999999; 
-	bottom: 0px; 
-	font-size: 16px;
-}
-
-<strong>.anchor-btn-bottom-2</strong>
-{
-	font-size: 1.1875em;
-	border: 0px;
-	min-height: 40px;
-	min-width: 100%;
-	padding-left: 0px;
-	padding-right: 0px;
-}
-
-<strong>.anchor-btn-main-2</strong>
-{
-	cursor: pointer;
-	color: #fff;
-	font-family: arial, sans-serif !important;
-	background-position: center 48%;
-	background-repeat: no-repeat;
-	background: #444444;
-	padding-left: 0px;
-	padding-right: 0px;
-}
-	    	</pre>
-	    </code>
-	    
-	    
-	    
-	    
     </div><!-- /.container -->
-    
 
 
     <!-- Bootstrap core JavaScript

@@ -40,6 +40,36 @@ var focusableElementsString = "a[href], area[href], input:not([disabled]), selec
 // store the item that has focus before opening the modal window
 var focusedElementBeforeModal;
 
+/*
+ * chat-demo-note
+ * Since we handle our own start-up, I just use this as a reference to know
+ * the sequence originally used when the event is fired.
+$(document).ready(function() {
+    jQuery('#startModal').click(function(e) {
+        showModal($('#modal'));
+    });
+    jQuery('#cancel').click(function(e) {
+        hideModal();
+    });
+    jQuery('#cancelButton').click(function(e) {
+        hideModal();
+    });
+    jQuery('#enter').click(function(e) {
+        enterButtonModal();
+    });
+    jQuery('#modalCloseButton').click(function(e) {
+        hideModal();
+    });
+    jQuery('#modal').keydown(function(event) {
+        trapTabKey($(this), event);
+    })
+    jQuery('#modal').keydown(function(event) {
+        trapEscapeKey($(this), event);
+    })
+
+});
+*/
+
 function trapEscapeKey(obj, evt) {
 
     // if escape pressed
@@ -103,6 +133,19 @@ function trapTabKey(obj, evt) {
 
 }
 
+/*
+ * 
+ * chat-demo-note
+ * Not relevant to our demo
+ * 
+function enterButtonModal() {
+    // BEGIN logic for executing the Enter button action for the modal window
+    alert('form submitted');
+    // END logic for executing the Enter button action for the modal window
+    hideModal();
+}
+*/
+
 function setInitialFocusModal(obj) {
     // get list of all children elements in given object
     var o = obj.find('*');
@@ -113,22 +156,12 @@ function setInitialFocusModal(obj) {
 
 }
 
-/*
-function enterButtonModal() {
-    // BEGIN logic for executing the Enter button action for the modal window
-    alert('form submitted');
-    // END logic for executing the Enter button action for the modal window
-    hideModal();
-}
-*/
-
 function setFocusToFirstItemInModal(obj){
     // get list of all children elements in given object
     var o = obj.find('*');
 
     // set the focus to the first keyboard focusable item
     o.filter(focusableElementsString).filter(':visible').first().focus();
-    //o.filter(focusableElementsString).filter(':visible').first().triggerHandler("focus");
 }
 
 function focusOnItem(obj) {
@@ -139,6 +172,11 @@ function showModal(obj, focusOnFirst) {
     jQuery('#mainPage').attr('aria-hidden', 'true'); // mark the main page as hidden
     jQuery('#modalOverlay').css('display', 'block'); // insert an overlay to prevent clicking and make a visual change to indicate the main apge is not available
     
+    /*
+     * chat-demo-note
+     * Since we have additional business before showing the modal, we comment out
+     * actually showing the modal.
+     */
     //jQuery('#modal').css('display', 'block'); // make the modal window visible
     //jQuery('#modal').attr('aria-hidden', 'false'); // mark the modal window as visible
 
@@ -150,13 +188,25 @@ function showModal(obj, focusOnFirst) {
     }
 
     // save current focus
+    /*
+     * chat-demo-note
+     * Always prefer to use Document Object Model (DOM) native
+     * code when possible.
+     */
     focusedElementBeforeModal = jQuery( document.activeElement );
+    //focusedElementBeforeModal = jQuery(':focus');
 
     if (focusOnFirst) setFocusToFirstItemInModal(obj);
 }
 
 function hideModal() {
     jQuery('#modalOverlay').css('display', 'none'); // remove the overlay in order to make the main screen available again
+    
+    /*
+     * chat-demo-note
+     * Since we have additional business before showing the modal, we comment out
+     * actually showing the modal.
+     */
     //jQuery('#modal').css('display', 'none'); // hide the modal window
     //jQuery('#modal').attr('aria-hidden', 'true'); // mark the modal window as hidden
     jQuery('#mainPage').attr('aria-hidden', 'false'); // mark the main page as visible

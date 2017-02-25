@@ -32,6 +32,11 @@ function chatLaunchButton_hide() {
 	jQuery("#chat-launch-wrapper").addClass("is-hidden");
 }
 
+/**
+ * A procedural nod to what should be an object-oriented piece of code. No matter, this
+ * is the head end function to get us started. 
+ * 
+ */
 function modalWindow_initialize(configObj) {
 	
 	winConfig = configObj;
