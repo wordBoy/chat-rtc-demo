@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Text Size Test | Accessible Chat Demos</title>
+    
+    <script src="assets/js/vendor/jquery.min.js"></script>
+    
+    <script>
+    
+    function Person(first, last, age, gender, interests) {
+    	  this.name = {
+    	    first,
+    	    last
+    	  };
+    	  this.age = age;
+    	  this.gender = gender;
+    	  this.interests = interests;
+    };
+   
+   	Person.prototype.farewell = function() {
+   		console.log(this.name.first + ' has left the building. Bye for now!');
+   	}
+   	
+   	Person.prototype.greeting = function() {
+   		console.log("Greetings from " + this.name.first);
+   	}
+   	
+   	Person.prototype.bio = function() {
+   		console.log("This is my bio: age " + this.age + ", gender " + this.gender)
+   	}
+   	
+   	function Teacher(first, last, age, gender, interests, subject) {
+   		Person.call(this, first, last, age, gender, interests);
+   	 
+   	 	this.subject = subject;
+   		
+   	 	Teacher.prototype = Object.create(Person.prototype);
+      	Teacher.prototype.constructor = Teacher;
+      	
+      	//console.log("test: " + this.farewell)
+   	}
+   	
+   	Teacher.prototype.greeting = function() {
+   	  var prefix;
+
+   	  if (this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+   	    prefix = 'Mr.';
+   	  } else if (this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+   	    prefix = 'Mrs.';
+   	  } else {
+   	    prefix = 'Mx.';
+   	  }
+
+   	  console.log('Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.');
+   	};
+   
+   	var person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+    person1.greeting();
+    person1.bio();
+    
+    var teacher1 = new Teacher("Enid", "Klumpner", 54, 'female', ['knitting','firearms'], 'mathematics');
+    teacher1.greeting();
+    teacher1.farewell();
+    
+    //var person2 = new Person('Sally');
+    //person2.greeting();
+    //console.log("check");
+    
+    </script>
+  </head>
+
+  <body>
+  <h1>OOP Work</h1>
+  
+  <button id="winTarg">This is the thing here.</button>
+
+  </body>
+</html>
