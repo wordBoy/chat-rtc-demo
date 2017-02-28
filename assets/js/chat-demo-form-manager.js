@@ -21,6 +21,7 @@ function formMgr_initialize(configObj) {
 function validatePCS() {
 	
 	var hasErrors = false;
+	clearErrStatements();
 	
 	for (var i in formElements) {
 		if (!formHasValidContent(formElements[i])) {
@@ -78,12 +79,14 @@ function buildErrStatement(item) {
 	temp = err + "err-" + item.rootId + err2 + item.errStatement + err3; 
 	labelJq.after(temp);
 	
-	jQuery(item.rootId).attr("aria-describedby","err-" + item.rootId);
+	//console.log("buildErrStatement(): rootId = " + item.rootId);
+	jQuery("#" + item.rootId).attr("aria-describedby","err-" + item.rootId);
 }
 
 function clearErrStatements() {
 	
 	for (var i in formElements) {
+		formElements[i].noErrors = true;
     	jQuery("#err-"+formElements[i].rootId).remove();
     	jQuery("#" + formElements[i].rootId).removeAttr("aria-describedby");	
 	}

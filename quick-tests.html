@@ -8,23 +8,35 @@
     <link href="assets/css/bootstrap.css" rel="stylesheet">
 
     <title>Text Size Test | AT&T Chat Primer</title>
+    
+    <script>
+    
+    var Panel = function() {
+    	this.width = 20;
+    	this.height = 20;
+    	
+    	function initialize() {
+    		//do stuff
+    		console.log("initialized");
+    	}
+    	
+    	function testCall() {
+    		console.log("testCall()");
+    	}
+    }
+    
+    panel.prototype.myFunc = function() {
+    	console.log("myFunc() called");
+    }
+    
+    var newPanel = new Panel();
+    newPanel.myFunc();
+    
+    </script>
   </head>
 
   <body>
-  <h1>Button Focus tests</h1>
-  <p>Button 1: <button type="button">Button 1</button></p>
-  <p>Button 2: <button type="button">Button 2</button></p>
-  <p>Button 3: <button type="button">Button 3</button></p>
-  <p>Button 4: <button type="button">Button 4</button></p>
-  <p>Button 5: <button type="button">Button 5</button></p>
-  <button type="button" type="button" class="anchor-btn-bottom anchor-btn-main">Chat available</button>
-  
-  <h2>What Have We Learned Today?</h2>
-  <h3>Android Chrome OS on Android 7.x</h3>
-  <ul>
-  	<li>The CSS property <code>-webkit-text-size-adjust</code>, Android Chrome browser 7.x, ignores values greater than 100%.</li>
-  	<li>Small amounts of text simply don't scale.</li>
-  </ul>
+  <h1>OOP Work</h1>
 
   </body>
 </html>
