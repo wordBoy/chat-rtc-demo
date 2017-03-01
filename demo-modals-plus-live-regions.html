@@ -75,10 +75,16 @@
     		jQuery("#hidden-chat-log").empty();
     	}
     	
-    	function chatLog_insert(msg) {
+    	function chatLog_insert(msg, isFirstMsg) {
     		chatLog_clear();
     		jQuery("#hidden-chat-log").text(msg);
+    		
+    		//Finding this to not be quite as reliable
     		//jQuery("#hidden-chat-log").html(msg);
+    	}
+    	
+    	function chatLog_insert_delayed(msg) {
+    		setTimeout( chatLog_insert , 2000, msg);
     	}
     	
     	function injectCallerMsg() {
@@ -139,7 +145,7 @@
     	
     	function showChatDemo() {
         	modalWindow_show();
-        	chatLog_insert("Fred: Hello - how can I help you today?");
+        	chatLog_insert_delayed("Fred: Hello - how can I help you today?");
     		
     	}
     
@@ -212,6 +218,7 @@
 			    </div>
 		    </div>
 			<div class="chat-win-msg-bar">
+				<label for="chat-win-caller-input" class="hidden-spoken">Chat message input</label>
 				<input id="chat-win-caller-input" title="Chat Message Input" class="chat-win-send-fld" type="text">
 				<button class="chat-win-send-btn" onclick="injectCallerMsg();">Send</button>
 			</div>
@@ -219,8 +226,10 @@
 	</div><!-- /pcs-container -->
 		
 	<div id="modalOverlay" tabindex="-1"></div>
-
-	<div id="hidden-chat-log" aria-relevant="additions" class="hidden-spoken" aria-live="polite"></div>
+	
+	<!-- if we use aria-relevant='additions' - NVDA becomes silent here. -->
+	<!-- class="hidden-spoken"  -->
+	<div id="hidden-chat-log" aria-live="polite"></div>
 	
     <!-- Bootstrap core JavaScript
     ================================================== -->
