@@ -41,6 +41,12 @@
     	
     	//When true, the agent chooser modal is not visible
     	var modalIsHidden = true;
+		
+    	//Keeps track of agent message count in the dialog window
+    	var calleeMsgCount = 0;
+    	
+    	//Stores time out call from the agent response delay.
+    	var timeOutCall;
     	
     	/**
     	* Fired once jQuery calls it's ready() function. To see where this is called from,
@@ -60,21 +66,25 @@
     		//see chat-demo-modal-window.js to follow where this goes.
         	modalWindow_initialize(configObj);
         	
-        	$("#chat-win-caller-input").keypress(function(e) {
+        	jQuery("#chat-win-caller-input").keypress(function(e) {
         	    if(e.which == 13) {
         	    	injectCallerMsg();
         	    }
         	});
 
         	chatLog_clear();
-        	
-    		
     	}
     	
+    	/**
+    	* Clears the live region of content
+    	*/
     	function chatLog_clear() {
     		jQuery("#hidden-chat-log").empty();
     	}
     	
+    	/**
+    	* Inserts content inro the live region
+    	*/
     	function chatLog_insert(msg, isFirstMsg) {
     		chatLog_clear();
     		jQuery("#hidden-chat-log").text(msg);
@@ -83,10 +93,18 @@
     		//jQuery("#hidden-chat-log").html(msg);
     	}
     	
+    	/**
+    	* Inserts content into the live region after a two second delay.
+    	* This is used when the dialog initially opens.
+    	*/
     	function chatLog_insert_delayed(msg) {
     		setTimeout( chatLog_insert , 2000, msg);
     	}
     	
+    	/**
+    	* Places the user's message into the chat dialog window, or auto-places
+    	* content if the field is empty.
+    	*/
     	function injectCallerMsg() {
     		
     		var msg;
@@ -103,17 +121,20 @@
     		jQuery("#chat-log").append(line);
     		timeCalleeMsg();
     		setScrollLoc();
-    		$("#chat-win-caller-input").val("");
+    		jQuery("#chat-win-caller-input").val("");
     	}
     	
-    	var calleeMsgCount = 0;
-    	var timeOutCall;
-    	
+    	/**
+    	* Controls the timing of the agent response so it isn't instant
+    	*/
     	function timeCalleeMsg() {
     		clearTimeout(timeOutCall);
     		timeOutCall = setTimeout( injectCalleeMsg , 1000);
     	}
     	
+    	/**
+    	* Inserts the agent message into the dialog window.
+    	*/
     	function injectCalleeMsg() {
     		var msgs = [];
     		msgs.push("Hello - how can I help you today?");
@@ -135,14 +156,21 @@
     		jQuery("#chat-log").append(line);
     		
     		setScrollLoc();
-    		$("#chat-win-caller-input").val("");
+    		jQuery("#chat-win-caller-input").val("");
     	}
     	
+    	/**
+    	* Scrolls the dialog box so the last set of content inserted is visible
+    	*/
     	function setScrollLoc() {
     		var sHeight = jQuery("#chat-log").prop('scrollHeight');
     		jQuery("#chat-log").scrollTop(sHeight);
     	}
     	
+    	/**
+    	* Displays the chat modal window, and then requests a delayed insertion of the agent
+    	* message into the live region.
+    	*/
     	function showChatDemo() {
         	modalWindow_show();
         	chatLog_insert_delayed("Fred: Hello - how can I help you today?");
@@ -204,7 +232,7 @@
     	</div>
     </div>
     
-    <div id="chat-win-container" class="chat-container chat-container-win is-hidden" aria-hidden="true">
+    <div id="chat-win-container" class="chat-container chat-container-win is-hidden" aria-hidden="true" role="dialog">
 	    <div class="chat-modal-wrapper">
 	    	<div class="chat-win-modal-header-wrapper">
 	    		<div class="chat-modal-header-title-wrapper">		    		
