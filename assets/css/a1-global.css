@@ -1,7 +1,7 @@
 /*
-* Accessibility Techniques CSS
-* -----------------------------
-*/
+* Chat Demo CSS File
+* Created for CSUN 2017 by Glenn Bradford
+* ----------------------------------------*/
 
 /*
 *   TABLE OF CONTENTS
@@ -12,8 +12,11 @@
 * 4 - Footer
 * 5 - Nav-bar
 * 6 - Test Pages CSS
-* 7 - Chat-Button-Demo
-* 
+* 7 - Chat Demo Common Modal Window Styles
+* 8 - Chat-Touch-Guide-Demo
+* 9 - Anchor Button Demo
+ 10 - Pre-chat Suvey Demo
+ 11 - Chat Window Demo
 */ 
 
 
@@ -198,7 +201,7 @@ a.nav-demo {
 }
 
 
-/* Chat Demo Common Modal Window Styles
+/* 7 - Chat Demo Common Modal Window Styles
 ------------------------------------------------------------*/
 	
 	.chat-container
@@ -279,7 +282,7 @@ a.nav-demo {
 		margin: 1.5rem;
 	}
 
-/* Chat-Touch-Guide-Demo
+/* 8 - Chat-Touch-Guide-Demo
 ------------------------------------------------------------*/
 	
 	.ac-msg {
@@ -311,7 +314,7 @@ a.nav-demo {
 		padding-left: 0px;
 	}
 
-/* Anchor Button Demo
+/* 9 - Anchor Button Demo
 ------------------------------------------------------------*/
 
 	.is-hidden {
@@ -405,7 +408,7 @@ a.nav-demo {
 	} 
 
 /*
-* Pre-chat Suvey Demo
+* 10 - Pre-chat Suvey Demo
 * -------------------------------------------------------------*/
 
 	.chat-container-pcs
@@ -522,7 +525,7 @@ a.nav-demo {
 	}
 
 /*
-* Chat Window Demo
+* 11 - Chat Window Demo
 * -------------------------------------------------------------*/
 
 	.chat-container-win
@@ -618,7 +621,6 @@ a.nav-demo {
 		margin-bottom: 12px;
 		
 	}
-	
 
 	@media screen and (max-width: 500px) {
 	   .chat-container-win
