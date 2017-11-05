@@ -81,6 +81,7 @@ function buildErrStatement(item) {
 	
 	//console.log("buildErrStatement(): rootId = " + item.rootId);
 	jQuery("#" + item.rootId).attr("aria-describedby","err-" + item.rootId);
+	jQuery("#" + item.rootId).attr("aria-invalid",true);
 }
 
 function clearErrStatements() {
@@ -88,6 +89,8 @@ function clearErrStatements() {
 	for (var i in formElements) {
 		formElements[i].noErrors = true;
     	jQuery("#err-"+formElements[i].rootId).remove();
-    	jQuery("#" + formElements[i].rootId).removeAttr("aria-describedby");	
+    	jQuery("#" + formElements[i].rootId).removeAttr("aria-describedby");
+    	jQuery("#" + formElements[i].rootId).removeAttr("aria-invalid");	
 	}
 }
+
